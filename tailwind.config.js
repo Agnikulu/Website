@@ -1,105 +1,61 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
-  theme: {
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-      /* ::: CHANGE COLORS :::
-      *   You can change the colors of this template. Just uncomment a color below and comment the default color.
-      *   If you want to create your own color palette, go to https://colorffy.com/dark-theme-generator and create your own color palette.
-      */ 
-     /* :: Color Palette: Purple and Dark Blue */
-      'primary': {
-        100: '#194bff',
-        200: '#525dff',
-        300: '#7170ff',
-        400: '#8b83ff',
-        500: '#a197ff',
-        600: '#b6abff'
-      },
-      'surface': {
-        100: '#07022e',
-        200: '#1f1e42',
-        300: '#393658',
-        400: '#524f6e',
-        500: '#6d6a84',
-        600: '#89869c'
-      },
-      'on-background': '#ffffff',
-      /* */
-      /* :: Color Palette: Yellow and Dark Grey
-      'primary': {
-        100: '#ffc107',
-        200: '#ffc83b',
-        300: '#ffce58',
-        400: '#ffd572',
-        500: '#ffdc8a',
-        600: '#ffe3a2'
-      },
-      'surface': {
-        100: '#121212',
-        200: '#282828',
-        300: '#3f3f3f',
-        400: '#575757',
-        500: '#717171',
-        600: '#8b8b8b'
-      },
-      'on-background': '#ffffff',
-      */  
-      /* :: Color Palette: Orange and Dark Blue
-      'primary': {
-        100: '#ff6b35',
-        200: '#ff7d4b',
-        300: '#ff8f61',
-        400: '#ff9f77',
-        500: '#ffb08c',
-        600: '#ffc0a3'
-      },
-      'surface': {
-        100: '#07022e',
-        200: '#1f1e42',
-        300: '#393658',
-        400: '#524f6e',
-        500: '#6d6a84',
-        600: '#89869c'
-      },
-      'on-background': '#ffffff',
-      */
-      /* :: Color Palette: Green and Dark Blue
-      'primary': {
-        100: '#0b7a75',
-        200: '#378883',
-        300: '#549792',
-        400: '#6da5a1',
-        500: '#86b4b0',
-        600: '#9ec3bf'
-      },
-      'surface': {
-        100: '#07022e',
-        200: '#1f1e42',
-        300: '#393658',
-        400: '#524f6e',
-        500: '#6d6a84',
-        600: '#89869c'
-      },
-      'on-background': '#ffffff',
-      */
-    },
-    extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+export default {
+    content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+    theme: {
+      extend: {
+        colors: {
+          'background': '#0A0A0A',
+          'background-light': '#151515',
+          'neon-cyan': '#0AFFFF',
+          'neon-purple': '#BF5AF2',
+          'neon-blue': '#0A84FF',
+          'neon-pink': '#FF1493',  // New vibrant pink
+          'neon-green': '#00FF9F',
+          'text-primary': '#E0E0E0',
+          'text-secondary': '#A0A0A0',
+        },
+        fontFamily: {
+          'sans': ['Inter', 'sans-serif'],
+          'mono': ['JetBrains Mono', 'monospace'],
+          'cool': ['Poppins', 'sans-serif'],
+        },
+        animation: {
+          'text-shimmer': 'text-shimmer 2.5s ease infinite',
+          'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          'float': 'float 6s ease-in-out infinite',
+          'gradient-animation': 'gradient-shift 5s ease infinite',
+
+        },
+        keyframes: {
+          'text-shimmer': {
+            '0%, 100%': {
+              'background-size': '200% 200%',
+              'background-position': 'left center',
+            },
+            '50%': {
+              'background-size': '200% 200%',
+              'background-position': 'right center',
+            },
+          },
+          'float': {
+            '0%, 100%': { transform: 'translateY(0)' },
+            '50%': { transform: 'translateY(-10px)' },
+          },
+          'gradient-shift': {
+            '0%': { 'background-position': '0% 50%' },
+            '25%': { 'background-position': '25% 50%' },
+            '50%': { 'background-position': '50% 50%' },
+            '75%': { 'background-position': '75% 50%' },
+            '100%': { 'background-position': '100% 50%' },
+          },
+          
+        },
+        boxShadow: {
+          'neon-glow': '0 0 5px theme("colors.neon-cyan"), 0 0 20px rgba(10, 255, 255, 0.3)',
+          'neon-purple-glow': '0 0 5px theme("colors.neon-purple"), 0 0 20px rgba(191, 90, 242, 0.3)',
+          'neon-blue-glow': '0 0 5px theme("colors.neon-blue"), 0 0 20px rgba(10, 132, 255, 0.3)',
+        },
       },
     },
-    fontFamily: {
-      'body': ['"Inter"', 'Helvetica', 'sans-serif']
-    }
-  },
-  plugins: [],
-}
+    plugins: [],
+  };
