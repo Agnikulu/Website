@@ -26,7 +26,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <a href="#" className="text-2xl font-bold tracking-tighter group">
           <span className="bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent group-hover:animate-text-shimmer transition duration-300">
-            Neelesh.
+            Agnik.
           </span>
           <span className="text-neon-cyan">_</span>
         </a>

@@ -61,7 +61,7 @@ const HeroSection = () => {
           <div>
             <h2 className="text-lg text-gray-400">Hi, I'm</h2>
             <h1 className="text-5xl md:text-5xl font-bold bg-gradient-to-r from-neon-cyan to-neon-purple to-neon-pink to-neon-orange to-neon-purple bg-clip-text text-transparent animate-text-shimmer transition duration-800">
-              Neelesh Bokkisam.
+              Agnik Banerjee.
             </h1>
 
           </div>
@@ -71,10 +71,7 @@ const HeroSection = () => {
           I <span className="text-neon-cyan">{displayedWord}</span>.
         </h1>
         <p className="text-gray-400 mt-2 text-medium leading-relaxed">
-          Studying EECS & IEOR at UC Berkeley.
-          Exploring artificial intelligence, machine learning, software engineering, NLP, algorithms, and high frequency trading.
-          :)
-
+          Studying Computer Science at the University of Maryland with minors in Data Science and Technology Entrepreneurship & Corporate Innovation. Passionate about building software and technology solutions, exploring AI’s potential in healthcare, and driving innovation in early-stage startups.
         </p>
 
         {/* Social Media Icons */}
@@ -107,8 +104,6 @@ const HeroSection = () => {
           </a>
         </div>
 
-
-
         {/* Terminal Box */}
         <div className="mt-8 w-[480px] opacity-70 hover:opacity-100 transition-opacity duration-300">
           <div className="bg-background-light border border-neon-cyan/30 rounded-md p-4 shadow-neon-glow">
@@ -120,9 +115,9 @@ const HeroSection = () => {
             </div>
             <div className="font-mono text-xs">
               <div className="text-neon-purple">$ whoami</div>
-              <div className="text-neon-cyan">neelesh_bokkisam</div>
+              <div className="text-neon-cyan">agnik_banerjee</div>
               <div className="text-neon-purple">$ skills --top</div>
-              <div className="text-neon-cyan">['javascript', 'react', 'python']</div>
+              <div className="text-neon-cyan">['python', 'react', 'fastapi']</div>
               <div className="text-neon-purple">$ status</div>
               <div className="text-neon-cyan">ready_to_collaborate</div>
               <div className="text-neon-purple mt-1">$ <span className="animate-pulse">█</span></div>
@@ -130,7 +125,7 @@ const HeroSection = () => {
           </div>
           {/* Copyright Text Below */}
           <p className="text-gray-500 text-sm mt-4">
-            © 2025 Neelesh Bokkisam. All rights reserved.
+            © 2025 Agnik Banerjee. All rights reserved.
           </p>
         </div>
       </div>
@@ -208,7 +203,7 @@ const HeroSection = () => {
         {/* Resume Button - Absolute Positioning with Bottom Space */}
         <div className="relative w-full mt-6 pb-16 flex justify-center">
           <a
-            href="https://drive.google.com/file/d/1i_m5Xi8XRjJHkcfvY91V9l5sFLCiwGQf/view?usp=sharing"
+            href="https://drive.google.com/file/d/1LwxO-qC434lChZkiJP9wBQ_SjFJFjPnP/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-3 bg-gray-800 text-white rounded-lg border border-gray-600 hover:bg-gray-700 hover:border-gray-500 transition-all duration-300 absolute left-[190px]"
