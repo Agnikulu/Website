@@ -203,7 +203,7 @@ const HeroSection = () => {
         {/* Resume Button - Absolute Positioning with Bottom Space */}
         <div className="relative w-full mt-6 pb-16 flex justify-center">
           <a
-            href="https://drive.google.com/file/d/1r0eFNN5VzTHVOGxN_80Q1q5ruySQ0DXZ/view?usp=sharing"
+            href="https://drive.google.com/file/d/1IExjnXBovViR5obkH4R1GLpO9phZp3cG/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-3 bg-gray-800 text-white rounded-lg border border-gray-600 hover:bg-gray-700 hover:border-gray-500 transition-all duration-300 absolute left-[190px]"
