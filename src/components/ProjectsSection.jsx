@@ -7,7 +7,7 @@ const projectData = [
     title: "Aquila Clouds",
     description: "Software Engineering Intern",
     category: "Internship",
-    techStack: ["LLMs", "Vector DB", "FastAPI", "PostgreSQL"],
+    techStack: ["RAG-Enhanced LLMs", "FastAPI", "PostgreSQL"],
     date: "May 2025 – Present",
     image: "/aquila.png",
     link: "https://aquilaclouds.com/",
