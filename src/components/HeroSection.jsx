@@ -132,7 +132,7 @@ const HeroSection = () => {
 
       {/* Right Side - Scrollable Projects with Dates & Hover Effect */}
       <div className="md:w-1/2 overflow-y-auto max-h-screen p-4 self-start mt-4">
-        <h2 className="text-xl text-gray-300 font-medium mb-4">Experience & Projects</h2>
+        <h2 className="text-xl text-gray-300 font-medium mb-4">Experience</h2>
         <div className="space-y-6">
           {projectData.map((project, index) => (
             <div key={project.id} className="relative flex items-start justify-between gap-4">
