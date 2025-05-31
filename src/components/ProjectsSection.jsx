@@ -108,7 +108,7 @@ const ProjectsSection = () => {
 
 const ProjectCard = ({ project }) => {
   return (
-    <article className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden h-[400px] transform transition-all duration-500">
+    <article className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden aspect-[3/2] transform transition-all duration-500">
       <div className="absolute inset-0 z-0">
         <img
           src={project.image}
@@ -118,46 +118,47 @@ const ProjectCard = ({ project }) => {
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       </div>
 
-      <div className="absolute inset-0 p-6 flex flex-col justify-end z-10">
-        <span className="inline-block px-3 py-1 bg-neon-purple/80 text-white text-xs rounded-full mb-3 backdrop-blur-sm">
+      <div className="absolute inset-0 p-4 md:p-6 flex flex-col justify-end z-10">
+        <span className="inline-block px-2 md:px-3 py-1 bg-neon-purple/80 text-white text-[10px] md:text-xs rounded-full mb-2 md:mb-3 backdrop-blur-sm">
           {project.category}
         </span>
 
-        <h3 className="text-2xl font-extrabold text-white transition-colors">
+        <h3 className="text-xl md:text-2xl font-extrabold text-white transition-colors">
           {project.title}
         </h3>
-        <p className="text-gray-300">{project.description}</p>
+        <p className="text-gray-300 text-sm md:text-base">{project.description}</p>
 
         {/* TechStack and “Learn More” only show on desktop hover */}
-        <div className="flex flex-wrap gap-2 mb-4 opacity-0 translate-y-4 transition-all duration-300 md:group-hover:opacity-100 md:group-hover:translate-y-0">
+        <div className="flex flex-wrap gap-1 md:gap-2 mt-2 mb-3 opacity-0 translate-y-2 transition-all duration-300 md:group-hover:opacity-100 md:group-hover:translate-y-0">
           {project.techStack.map(tech => (
             <span
               key={tech}
-              className="px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded backdrop-blur-sm border border-neon-cyan/30"
+              className="px-1 md:px-2 py-0.5 md:py-1 bg-background/50 text-neon-cyan text-[8px] md:text-xs rounded backdrop-blur-sm border border-neon-cyan/30"
             >
               {tech}
             </span>
           ))}
         </div>
 
-        <div className="flex gap-3 opacity-0 translate-y-4 transition-all duration-300 md:group-hover:opacity-100 md:group-hover:translate-y-0">
+        <div className="opacity-0 translate-y-2 transition-all duration-300 md:group-hover:opacity-100 md:group-hover:translate-y-0">
           <a
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-neon-cyan hover:text-white transition-colors"
+            className="inline-flex items-center gap-1 md:gap-2 text-neon-cyan text-[10px] md:text-sm hover:text-white transition-colors"
           >
             <span>Learn More</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
+              width="14"
+              height="14"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              className="md:w-4 md:h-4"
             >
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
@@ -165,8 +166,8 @@ const ProjectCard = ({ project }) => {
         </div>
       </div>
 
-      <div className="absolute top-0 right-0 border-t-2 border-r-2 border-neon-cyan w-8 h-8 opacity-70"></div>
-      <div className="absolute bottom-0 left-0 border-b-2 border-l-2 border-neon-cyan w-8 h-8 opacity-70"></div>
+      <div className="absolute top-0 right-0 border-t-2 border-r-2 border-neon-cyan w-6 h-6 md:w-8 md:h-8 opacity-70"></div>
+      <div className="absolute bottom-0 left-0 border-b-2 border-l-2 border-neon-cyan w-6 h-6 md:w-8 md:h-8 opacity-70"></div>
     </article>
   );
 };
