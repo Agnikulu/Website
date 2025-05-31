@@ -7,7 +7,14 @@ const projectData = [
     title: "Aquila Clouds",
     description: "Software Engineering Intern",
     category: "Internship",
-    techStack: ["RAG-Enhanced LLMs", "Vector DB", "MCP Servers", "FastAPI", "PostgreSQL", "Kubernetes"],
+    techStack: [
+      "RAG-Enhanced LLMs",
+      "Vector DB",
+      "MCP Servers",
+      "FastAPI",
+      "PostgreSQL",
+      "Kubernetes"
+    ],
     date: "May 2025 – Present",
     image: "/aquila.png",
     link: "https://aquilaclouds.com/",
@@ -17,7 +24,12 @@ const projectData = [
     title: "TECH Lab",
     description: "Research Assistant",
     category: "Research",
-    techStack: ["Signal Processing", "Contrastive Learning", "Autoregressive-based Forecasting", "PyTorch"],
+    techStack: [
+      "Signal Processing",
+      "Contrastive Learning",
+      "Autoregressive-based Forecasting",
+      "PyTorch"
+    ],
     date: "June 2024 – Present",
     image: "/ucsf.png",
     link: "https://www.ucsf.edu/",
@@ -27,7 +39,14 @@ const projectData = [
     title: "Wall Lab",
     description: "Research Intern",
     category: "Research",
-    techStack: ["Edge Computing", "Model Optimization", "Federated Learning", "TensorFlow Lite", "Kotlin", "Swift"],
+    techStack: [
+      "Edge Computing",
+      "Model Optimization",
+      "Federated Learning",
+      "TensorFlow Lite",
+      "Kotlin",
+      "Swift"
+    ],
     date: "June 2021 – May 2023",
     image: "/stanford.png",
     link: "https://med.stanford.edu/",
@@ -119,22 +138,62 @@ const ProjectCard = ({ project, isHovered, onMouseEnter, onMouseLeave }) => {
         </h3>
         <p className="text-gray-300">{project.description}</p>
 
-        <div className={`flex flex-wrap gap-2 mb-4 transition-all duration-300 ${
+        {/* Replace single techStack div with two: truncated on mobile, full on md+ */}
+        {/* Full list for md+ screens */}
+        <div
+          className={`hidden md:flex flex-wrap gap-2 mb-4 transition-all duration-300 ${
             isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}>
+          }`}
+        >
           {project.techStack.map(tech => (
-            <span key={tech} className="px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded backdrop-blur-sm border border-neon-cyan/30">
+            <span
+              key={tech}
+              className="px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded backdrop-blur-sm border border-neon-cyan/30"
+            >
               {tech}
             </span>
           ))}
         </div>
 
-        <div className={`flex gap-3 transition-all duration-300 ${
+        {/* Truncated list (top 3) for mobile */}
+        <div
+          className={`flex md:hidden flex-wrap gap-2 mb-4 transition-all duration-300 ${
             isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}>
-          <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-neon-cyan hover:text-white transition-colors">
+          }`}
+        >
+          {project.techStack.slice(0, 3).map(tech => (
+            <span
+              key={tech}
+              className="px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded backdrop-blur-sm border border-neon-cyan/30"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        <div
+          className={`flex gap-3 transition-all duration-300 ${
+            isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+        >
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-neon-cyan hover:text-white transition-colors"
+          >
             <span>Learn More</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </a>
