@@ -9,8 +9,8 @@ const projectData = [
     category: "Internship",
     techStack: [
       "RAG-Enhanced LLMs",
-      "MCP Servers",
       "Vector DB",
+      "MCP Servers",
       "FastAPI",
       "PostgreSQL",
       "Kubernetes"
@@ -27,7 +27,7 @@ const projectData = [
     techStack: [
       "Signal Processing",
       "Contrastive Learning",
-      "Autoregressive Forecasting",
+      "Autoregressive-based Forecasting",
       "PyTorch"
     ],
     date: "June 2024 – Present",
