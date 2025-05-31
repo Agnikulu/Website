@@ -188,7 +188,7 @@ const HeroSection = () => {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden h-40 md:h-[180px] flex-grow transition-all duration-500 hover:cursor-pointer"
+                className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden aspect-[4/3] md:h-[180px] flex-grow transition-all duration-500 hover:cursor-pointer"
               >
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
