@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Update with personal experiences only
 const projectData = [
@@ -9,8 +9,8 @@ const projectData = [
     category: "Internship",
     techStack: [
       "RAG-Enhanced LLMs",
-      "Vector DB",
       "MCP Servers",
+      "Vector DB",
       "FastAPI",
       "PostgreSQL",
       "Kubernetes"
@@ -27,7 +27,7 @@ const projectData = [
     techStack: [
       "Signal Processing",
       "Contrastive Learning",
-      "Autoregressive-based Forecasting",
+      "Autoregressive Forecasting",
       "PyTorch"
     ],
     date: "June 2024 – Present",
@@ -115,17 +115,27 @@ const ProjectsSection = () => {
 };
 
 const ProjectCard = ({ project, isHovered, onMouseEnter, onMouseLeave }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // On mount, determine if current viewport is mobile (<768px)
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <article
       className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden h-[400px] transform transition-all duration-500"
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onMouseEnter={!isMobile ? onMouseEnter : undefined}
+      onMouseLeave={!isMobile ? onMouseLeave : undefined}
     >
       <div className="absolute inset-0 z-0">
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110 md:group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       </div>
@@ -135,51 +145,58 @@ const ProjectCard = ({ project, isHovered, onMouseEnter, onMouseLeave }) => {
           {project.category}
         </span>
 
-        <h3 className="text-2xl font-extrabold text-white group-hover:text-neon-cyan md:group-hover:text-neon-cyan transition-colors">
+        <h3 className="text-2xl font-extrabold text-white transition-colors">
           {project.title}
         </h3>
         <p className="text-gray-300">{project.description}</p>
 
-        {/* TechStack: only show on md+; on mobile, hover does nothing */}
-        <div className="hidden md:flex flex-wrap gap-2 mb-4 transition-all duration-300">
-          {project.techStack.map(tech => (
-            <span
-              key={tech}
-              className={`px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded backdrop-blur-sm border border-neon-cyan/30
-                ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
-              `}
+        {/* TechStack and “Learn More” only show on desktop */}
+        {!isMobile && (
+          <>
+            <div
+              className={`flex flex-wrap gap-2 mb-4 transition-all duration-300 ${
+                isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
             >
-              {tech}
-            </span>
-          ))}
-        </div>
+              {project.techStack.map(tech => (
+                <span
+                  key={tech}
+                  className="px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded backdrop-blur-sm border border-neon-cyan/30"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
 
-        {/* “Learn More” link: only show on md+ */}
-        <div className={`hidden md:flex gap-3 transition-all duration-300`}>
-          {isHovered && (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-neon-cyan hover:text-white transition-colors"
+            <div
+              className={`flex gap-3 transition-all duration-300 ${
+                isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
             >
-              <span>Learn More</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-neon-cyan hover:text-white transition-colors"
               >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </a>
-          )}
-        </div>
+                <span>Learn More</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </>
+        )}
       </div>
 
       <div className="absolute top-0 right-0 border-t-2 border-r-2 border-neon-cyan w-8 h-8 opacity-70"></div>
