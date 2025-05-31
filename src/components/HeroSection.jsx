@@ -174,7 +174,10 @@ const HeroSection = () => {
         <h2 className="text-xl text-gray-300 font-medium mb-4">Experience</h2>
         <div className="space-y-6">
           {projectData.map((project) => (
-            <div key={project.id} className="relative flex flex-col md:flex-row items-start justify-between gap-4">
+            <div
+              key={project.id}
+              className="relative flex flex-col md:flex-row items-start justify-between gap-4"
+            >
               {/* Date */}
               <div className="text-gray-400 text-xs font-medium text-right w-full md:w-[100px]">
                 {project.date}
@@ -185,7 +188,7 @@ const HeroSection = () => {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden h-[180px] flex-grow transition-all duration-500 hover:cursor-pointer"
+                className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden h-40 md:h-[180px] flex-grow transition-all duration-500 hover:cursor-pointer"
               >
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
@@ -204,9 +207,21 @@ const HeroSection = () => {
 
                 {/* Title */}
                 <div className="absolute inset-0 flex items-center justify-center text-center p-6 z-10 transition-all duration-500 ease-in-out">
-                  <h3 className="text-2xl font-extrabold text-white font-cool uppercase tracking-wide 
-                    transition-all duration-500 ease-in-out group-hover:text-neon-cyan
-                    group-hover:translate-y-[-160%] group-hover:translate-x-[-20%]"
+                  <h3
+                    className="
+                      text-2xl 
+                      font-extrabold 
+                      text-white 
+                      font-cool 
+                      uppercase 
+                      tracking-wide 
+                      transition-all 
+                      duration-500 
+                      ease-in-out 
+                      group-hover:text-neon-cyan
+                      group-hover:translate-y-[-160%] 
+                      group-hover:translate-x-[-20%]
+                    "
                   >
                     {project.title}
                   </h3>
