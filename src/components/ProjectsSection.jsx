@@ -115,27 +115,37 @@ const ProjectsSection = () => {
 };
 
 const ProjectCard = ({ project, isHovered, onMouseEnter, onMouseLeave }) => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
 
   useEffect(() => {
-    // On mount, determine if current viewport is mobile (<768px)
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    // Detect if the device is a mobile phone by user agent or small screen width
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const mobileRegex = /android|iphone|ipad|ipod|opera mini|mobile/i;
+    const isUA = mobileRegex.test(userAgent.toLowerCase());
+    const isWidthMobile = window.innerWidth < 768;
+    setIsMobileDevice(isUA || isWidthMobile);
+
+    const handleResize = () => {
+      const isWidthNowMobile = window.innerWidth < 768;
+      setIsMobileDevice(mobileRegex.test(navigator.userAgent.toLowerCase()) || isWidthNowMobile);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
     <article
       className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden h-[400px] transform transition-all duration-500"
-      onMouseEnter={!isMobile ? onMouseEnter : undefined}
-      onMouseLeave={!isMobile ? onMouseLeave : undefined}
+      onMouseEnter={!isMobileDevice ? onMouseEnter : undefined}
+      onMouseLeave={!isMobileDevice ? onMouseLeave : undefined}
     >
       <div className="absolute inset-0 z-0">
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+          className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${
+            !isMobileDevice ? 'group-hover:scale-110' : ''
+          }`}
         />
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       </div>
@@ -150,8 +160,8 @@ const ProjectCard = ({ project, isHovered, onMouseEnter, onMouseLeave }) => {
         </h3>
         <p className="text-gray-300">{project.description}</p>
 
-        {/* TechStack and “Learn More” only show on desktop */}
-        {!isMobile && (
+        {/* TechStack and “Learn More” only show on non-mobile */}
+        {!isMobileDevice && (
           <>
             <div
               className={`flex flex-wrap gap-2 mb-4 transition-all duration-300 ${
