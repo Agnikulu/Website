@@ -1,7 +1,7 @@
 // src/components/HeroSection.jsx
 
 import React, { useState, useEffect } from 'react';
-import { projectData } from './ProjectsSection'; // Import the project data
+import { projectData } from './ProjectsSection'; // Each project needs: id, title, subtitle, description, techStack, date, image, link, category
 import profilePic from '../../pic.png';
 
 const HeroSection = () => {
@@ -25,7 +25,7 @@ const HeroSection = () => {
         setTimeout(() => setIsDeleting(true), 1500);
         return;
       }
-      if (isDeleting && displayedWord === '') {
+      if (isDeleting && displayedWord === "") {
         setIsDeleting(false);
         setCurrentWordIndex((prev) => (prev + 1) % words.length);
         return;
@@ -57,19 +57,21 @@ const HeroSection = () => {
           {/* Name Section */}
           <div>
             <h2 className="text-lg text-gray-400">Hi, I'm</h2>
-            {/* ↳ On mobile: text-4xl. At md+: text-5xl. */}
+            {/* On mobile: text-4xl. At md+: text-5xl. */}
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-neon-cyan to-neon-purple to-neon-pink to-neon-orange to-neon-purple bg-clip-text text-transparent animate-text-shimmer transition duration-800">
               Agnik Banerjee.
             </h1>
           </div>
         </div>
 
-        {/* ↳ On mobile: text-xl. At md+: text-2xl. */}
+        {/* On mobile: text-xl. At md+: text-2xl. */}
         <h1 className="text-xl md:text-2xl font-semibold text-gray-200 mt-4">
           I <span className="text-neon-cyan">{displayedWord}</span>.
         </h1>
         <p className="text-gray-400 mt-2 leading-relaxed">
-          Studying Computer Science at the University of Maryland with minors in Data Science and Technology Entrepreneurship & Corporate Innovation. Passionate about building software and technology solutions, exploring AI’s potential in healthcare, and driving innovation in early-stage startups.
+          Studying Computer Science at the University of Maryland with minors in Data Science and Technology
+          Entrepreneurship &amp; Corporate Innovation. Passionate about building software and technology
+          solutions, exploring AI’s potential in healthcare, and driving innovation in early-stage startups.
         </p>
 
         {/* Social Media Icons */}
@@ -173,11 +175,11 @@ const HeroSection = () => {
         <h2 className="text-xl text-gray-300 font-medium mb-4">Experience</h2>
         <div className="space-y-6">
           {projectData.map((project) => (
-            <div 
-              key={project.id} 
+            <div
+              key={project.id}
               className="relative flex flex-col md:flex-row items-start justify-between gap-4"
             >
-              {/* Date */}
+              {/* Date Column */}
               <div className="text-gray-400 text-xs font-medium text-right w-full md:w-[100px]">
                 {project.date}
               </div>
@@ -188,15 +190,15 @@ const HeroSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
-                  group 
-                  relative 
-                  bg-background-light 
-                  border border-neon-cyan/20 
-                  rounded-md 
-                  overflow-hidden 
-                  w-full 
-                  h-32 md:h-[180px] 
-                  transition-all duration-500 
+                  group
+                  relative
+                  bg-background-light
+                  border border-neon-cyan/20
+                  rounded-md
+                  overflow-hidden
+                  w-full
+                  h-32 md:h-[180px]
+                  transition-all duration-500
                   hover:cursor-pointer
                 "
               >
@@ -215,38 +217,66 @@ const HeroSection = () => {
                   {project.category}
                 </div>
 
-                {/* Title */}
-                <div className="absolute inset-0 flex items-center justify-center text-center p-4 md:p-6 z-10 transition-all duration-500 ease-in-out">
-                  <h3 className="
-                    text-lg md:text-2xl 
-                    font-extrabold 
-                    text-white 
-                    font-cool 
-                    uppercase 
-                    tracking-wide 
-                    transition-all 
-                    duration-500 
-                    ease-in-out 
-                    group-hover:text-neon-cyan 
-                    -translate-y-0 
-                    md:group-hover:translate-y-[-160%] 
-                    md:group-hover:translate-x-[-20%] 
+                {/*
+                  Title & Subtitle wrapper:
+                  - On hover, translate up/left by the original amount so it doesn't fly off-screen
+                  - group-hover:translate-y-[-100%] (same as original for a single-line title)
+                  - md:group-hover:translate-y-[-160%] (same as original for desktop)
+                  - md:group-hover:translate-x-[-20%] (same as original)
+                */}
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    flex
+                    flex-col
+                    items-center
+                    justify-center
+                    text-center
+                    p-4 md:p-6
+                    z-10
+                    transition-all duration-500 ease-in-out
                     group-hover:translate-y-[-100%]
-                  ">
+                    md:group-hover:translate-y-[-160%]
+                    md:group-hover:translate-x-[-20%]
+                  "
+                >
+                  <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
                     {project.title}
                   </h3>
+                  <p className="text-xs md:text-sm text-gray-300 mt-2">
+                    {project.subtitle}
+                  </p>
                 </div>
 
                 {/* Description & Tech Stack (hidden until hover) */}
-                <div className="absolute inset-0 flex flex-col justify-end items-center text-center p-4 md:p-6 pb-6 z-10 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    flex
+                    flex-col
+                    justify-end
+                    items-center
+                    text-center
+                    p-4 md:p-6 pb-6
+                    z-10
+                    opacity-0
+                    group-hover:opacity-100
+                    transition-all duration-500
+                  "
+                >
+                  {/* Description Text */}
                   <p className="text-gray-300 mb-4 text-xs md:text-sm font-minimalist leading-relaxed">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-2 mb-1 justify-center">
+
+                  {/* Skills: inline-blocks centered with margin */}
+                  <div className="w-full text-center">
                     {project.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30"
+                        className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
                       >
                         {tech}
                       </span>
@@ -258,16 +288,28 @@ const HeroSection = () => {
           ))}
         </div>
 
-        {/* Resume Button (Centered on all screen sizes) */}
-        <div className="w-full mt-6 pb-16 flex justify-center">
-          <a
-            href="https://drive.google.com/file/d/1A70UP2_LppflOX7Tx_e-oIPva3B4zgLW/view?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-gray-800 text-white rounded-lg border border-gray-600 hover:bg-gray-700 hover:border-gray-500 transition-all duration-300"
-          >
-            View My 1-Page Resume →
-          </a>
+        {/*
+          Resume Button (centered under the “tile” column):
+          - grid-cols-1 on mobile → one column (button spans full width, centered)
+          - md:grid-cols-[100px_1fr] on desktop:
+              • first column = 100px (empty, aligning under date)
+              • second column = the rest (button is flex-justified center)
+        */}
+        <div className="mt-6 pb-16 grid grid-cols-1 md:grid-cols-[100px_1fr]">
+          {/* empty placeholder to reserve 100px on md */}
+          <div />
+
+          {/* actual button container, centered in column 2 */}
+          <div className="flex justify-center">
+            <a
+              href="https://drive.google.com/file/d/1A70UP2_LppflOX7Tx_e-oIPva3B4zgLW/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 bg-gray-800 text-white rounded-lg border border-gray-600 hover:bg-gray-700 hover:border-gray-500 transition-all duration-300"
+            >
+              View My 1-Page Resume →
+            </a>
+          </div>
         </div>
       </div>
     </section>
