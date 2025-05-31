@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 // Update with personal experiences only
 const projectData = [
@@ -55,8 +55,6 @@ const projectData = [
 
 const ProjectsSection = () => {
   const [filter, setFilter] = useState('All');
-  const [hoveredProject, setHoveredProject] = useState(null);
-
   const categories = ['All', ...new Set(projectData.map(project => project.category))];
 
   const filteredProjects =
@@ -92,13 +90,7 @@ const ProjectsSection = () => {
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
         {filteredProjects.map(project => (
-          <ProjectCard
-            key={project.id}
-            project={project}
-            isHovered={hoveredProject === project.id}
-            onMouseEnter={() => setHoveredProject(project.id)}
-            onMouseLeave={() => setHoveredProject(null)}
-          />
+          <ProjectCard key={project.id} project={project} />
         ))}
       </div>
 
@@ -114,38 +106,14 @@ const ProjectsSection = () => {
   );
 };
 
-const ProjectCard = ({ project, isHovered, onMouseEnter, onMouseLeave }) => {
-  const [isMobileDevice, setIsMobileDevice] = useState(false);
-
-  useEffect(() => {
-    // Detect if the device is a mobile phone by user agent or small screen width
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    const mobileRegex = /android|iphone|ipad|ipod|opera mini|mobile/i;
-    const isUA = mobileRegex.test(userAgent.toLowerCase());
-    const isWidthMobile = window.innerWidth < 768;
-    setIsMobileDevice(isUA || isWidthMobile);
-
-    const handleResize = () => {
-      const isWidthNowMobile = window.innerWidth < 768;
-      setIsMobileDevice(mobileRegex.test(navigator.userAgent.toLowerCase()) || isWidthNowMobile);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
+const ProjectCard = ({ project }) => {
   return (
-    <article
-      className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden h-[400px] transform transition-all duration-500"
-      onMouseEnter={!isMobileDevice ? onMouseEnter : undefined}
-      onMouseLeave={!isMobileDevice ? onMouseLeave : undefined}
-    >
+    <article className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden h-[400px] transform transition-all duration-500">
       <div className="absolute inset-0 z-0">
         <img
           src={project.image}
           alt={project.title}
-          className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${
-            !isMobileDevice ? 'group-hover:scale-110' : ''
-          }`}
+          className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       </div>
@@ -160,53 +128,41 @@ const ProjectCard = ({ project, isHovered, onMouseEnter, onMouseLeave }) => {
         </h3>
         <p className="text-gray-300">{project.description}</p>
 
-        {/* TechStack and “Learn More” only show on non-mobile */}
-        {!isMobileDevice && (
-          <>
-            <div
-              className={`flex flex-wrap gap-2 mb-4 transition-all duration-300 ${
-                isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
+        {/* TechStack and “Learn More” only show on desktop hover */}
+        <div className="flex flex-wrap gap-2 mb-4 opacity-0 translate-y-4 transition-all duration-300 md:group-hover:opacity-100 md:group-hover:translate-y-0">
+          {project.techStack.map(tech => (
+            <span
+              key={tech}
+              className="px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded backdrop-blur-sm border border-neon-cyan/30"
             >
-              {project.techStack.map(tech => (
-                <span
-                  key={tech}
-                  className="px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded backdrop-blur-sm border border-neon-cyan/30"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
+              {tech}
+            </span>
+          ))}
+        </div>
 
-            <div
-              className={`flex gap-3 transition-all duration-300 ${
-                isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
+        <div className="flex gap-3 opacity-0 translate-y-4 transition-all duration-300 md:group-hover:opacity-100 md:group-hover:translate-y-0">
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-neon-cyan hover:text-white transition-colors"
+          >
+            <span>Learn More</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-neon-cyan hover:text-white transition-colors"
-              >
-                <span>Learn More</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
-          </>
-        )}
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
       </div>
 
       <div className="absolute top-0 right-0 border-t-2 border-r-2 border-neon-cyan w-8 h-8 opacity-70"></div>
