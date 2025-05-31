@@ -1,7 +1,7 @@
 // src/components/HeroSection.jsx
 
 import React, { useState, useEffect } from 'react';
-import { projectData } from './ProjectsSection'; // Your existing projectData import
+import { projectData } from './ProjectsSection'; // Import the project data
 import profilePic from '../../pic.png';
 
 const HeroSection = () => {
@@ -26,14 +26,17 @@ const HeroSection = () => {
         setTimeout(() => setIsDeleting(true), 1500);
         return;
       }
+
       if (isDeleting && displayedWord === '') {
         setIsDeleting(false);
         setCurrentWordIndex((prev) => (prev + 1) % words.length);
         return;
       }
+
       const nextWord = isDeleting
         ? current.substring(0, displayedWord.length - 1)
         : current.substring(0, displayedWord.length + 1);
+
       setDisplayedWord(nextWord);
     }, isDeleting ? 80 : 120);
 
@@ -43,14 +46,7 @@ const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="
-        relative 
-        flex flex-col md:flex-row 
-        items-start 
-        max-w-6xl mx-auto 
-        px-6 pt-10 
-        min-h-screen
-      "
+      className="relative flex flex-col md:flex-row items-start max-w-6xl mx-auto px-6 pt-10 min-h-screen"
     >
       {/* ← Left Side (Profile + Intro) */}
       <div className="w-full md:w-1/2 md:sticky md:top-20 self-start">
@@ -65,25 +61,15 @@ const HeroSection = () => {
           {/* Name Section */}
           <div>
             <h2 className="text-lg text-gray-400">Hi, I'm</h2>
-            <h1 className="
-              text-5xl md:text-5xl 
-              font-bold 
-              bg-gradient-to-r 
-                from-neon-cyan 
-                to-neon-purple 
-                to-neon-pink 
-                to-neon-orange 
-                to-neon-purple 
-              bg-clip-text text-transparent 
-              animate-text-shimmer 
-              transition duration-800
-            ">
+            {/* ↳ On mobile: text-4xl. At md+: text-5xl. */}
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-neon-cyan to-neon-purple to-neon-pink to-neon-orange to-neon-purple bg-clip-text text-transparent animate-text-shimmer transition duration-800">
               Agnik Banerjee.
             </h1>
           </div>
         </div>
 
-        <h1 className="text-2xl font-semibold text-gray-200 mt-4">
+        {/* ↳ On mobile: text-xl. At md+: text-2xl. */}
+        <h1 className="text-xl md:text-2xl font-semibold text-gray-200 mt-4">
           I <span className="text-neon-cyan">{displayedWord}</span>.
         </h1>
         <p className="text-gray-400 mt-2 leading-relaxed">
@@ -96,17 +82,7 @@ const HeroSection = () => {
             href="https://github.com/agnikulu"
             target="_blank"
             rel="noopener noreferrer"
-            className="
-              w-10 h-10 
-              flex justify-center items-center 
-              rounded-full 
-              bg-background-light 
-              border border-neon-cyan/20 
-              text-text-secondary 
-              hover:text-neon-cyan 
-              hover:border-neon-cyan/60 
-              transition-all duration-300
-            "
+            className="w-10 h-10 flex justify-center items-center rounded-full bg-background-light border border-neon-cyan/20 text-text-secondary hover:text-neon-cyan hover:border-neon-cyan/60 transition-all duration-300"
           >
             {/* GitHub SVG */}
             <svg
@@ -128,17 +104,7 @@ const HeroSection = () => {
             href="https://linkedin.com/in/agnikbanerjee"
             target="_blank"
             rel="noopener noreferrer"
-            className="
-              w-10 h-10 
-              flex justify-center items-center 
-              rounded-full 
-              bg-background-light 
-              border border-neon-cyan/20 
-              text-text-secondary 
-              hover:text-neon-cyan 
-              hover:border-neon-cyan/60 
-              transition-all duration-300
-            "
+            className="w-10 h-10 flex justify-center items-center rounded-full bg-background-light border border-neon-cyan/20 text-text-secondary hover:text-neon-cyan hover:border-neon-cyan/60 transition-all duration-300"
           >
             {/* LinkedIn SVG */}
             <svg
@@ -160,17 +126,7 @@ const HeroSection = () => {
 
           <a
             href="mailto:agnik@umd.edu"
-            className="
-              w-10 h-10 
-              flex justify-center items-center 
-              rounded-full 
-              bg-background-light 
-              border border-neon-cyan/20 
-              text-text-secondary 
-              hover:text-neon-cyan 
-              hover:border-neon-cyan/60 
-              transition-all duration-300
-            "
+            className="w-10 h-10 flex justify-center items-center rounded-full bg-background-light border border-neon-cyan/20 text-text-secondary hover:text-neon-cyan hover:border-neon-cyan/60 transition-all duration-300"
           >
             {/* Gmail SVG */}
             <svg
@@ -197,9 +153,9 @@ const HeroSection = () => {
               <div className="w-3 h-3 bg-red-500 rounded-full"></div>
               <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <div className="text-xs text-text-secondary ml-2">terminal</div>
+              <div className="text-[10px] md:text-xs text-text-secondary ml-2">terminal</div>
             </div>
-            <div className="font-mono text-xs">
+            <div className="font-mono text-[10px] md:text-xs">
               <div className="text-neon-purple">$ whoami</div>
               <div className="text-neon-cyan">agnik_banerjee</div>
               <div className="text-neon-purple">$ skills --top</div>
@@ -209,7 +165,7 @@ const HeroSection = () => {
               <div className="text-neon-purple mt-1">$ <span className="animate-pulse">█</span></div>
             </div>
           </div>
-          {/* Copyright Text */}
+          {/* Copyright Text Below */}
           <p className="text-gray-500 text-sm mt-4">
             © 2025 Agnik Banerjee. All rights reserved.
           </p>
@@ -232,18 +188,7 @@ const HeroSection = () => {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="
-                  group 
-                  relative 
-                  bg-background-light 
-                  border border-neon-cyan/20 
-                  rounded-md 
-                  overflow-hidden 
-                  w-full 
-                  h-32 md:h-[180px] 
-                  transition-all duration-500 
-                  hover:cursor-pointer
-                "
+                className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden w-full h-32 md:h-[180px] transition-all duration-500 hover:cursor-pointer"
               >
                 {/* Background Image + Dark Overlay */}
                 <div className="absolute inset-0 z-0">
@@ -262,7 +207,7 @@ const HeroSection = () => {
 
                 {/* Title */}
                 <div className="absolute inset-0 flex items-center justify-center text-center p-6 z-10 transition-all duration-500 ease-in-out">
-                  <h3 className="text-2xl font-extrabold text-white font-cool uppercase tracking-wide 
+                  <h3 className="text-xl md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide 
                     transition-all duration-500 ease-in-out group-hover:text-neon-cyan
                     group-hover:translate-y-[-160%] group-hover:translate-x-[-20%]"
                   >
