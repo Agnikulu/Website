@@ -104,7 +104,9 @@ const ProjectsSection = () => {
 
       <div className="text-center mt-12">
         <button className="group relative px-6 py-3 bg-background-light border border-neon-cyan rounded-sm overflow-hidden hover:shadow-neon-glow transition duration-300">
-          <span className="relative z-10 text-neon-cyan group-hover:text-background transition duration-300">View All Experiences</span>
+          <span className="relative z-10 text-neon-cyan group-hover:text-background transition duration-300">
+            View All Experiences
+          </span>
           <span className="absolute inset-0 bg-neon-cyan transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
         </button>
       </div>
@@ -113,6 +115,10 @@ const ProjectsSection = () => {
 };
 
 const ProjectCard = ({ project, isHovered, onMouseEnter, onMouseLeave }) => {
+  // Number of tech tags to show on mobile
+  const mobileLimit = 3;
+  const showTruncated = project.techStack.length > mobileLimit;
+
   return (
     <article
       className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden h-[400px] transform transition-all duration-500"
@@ -138,37 +144,40 @@ const ProjectCard = ({ project, isHovered, onMouseEnter, onMouseLeave }) => {
         </h3>
         <p className="text-gray-300">{project.description}</p>
 
-        {/* Replace single techStack div with two: truncated on mobile, full on md+ */}
-        {/* Full list for md+ screens */}
-        <div
-          className={`hidden md:flex flex-wrap gap-2 mb-4 transition-all duration-300 ${
-            isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}
-        >
-          {project.techStack.map(tech => (
-            <span
-              key={tech}
-              className="px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded backdrop-blur-sm border border-neon-cyan/30"
-            >
-              {tech}
-            </span>
-          ))}
+        {/* Full skill list displayed on medium screens and up */}
+        <div className={`hidden md:block`}>
+          <div
+            className={`flex flex-wrap gap-2 mb-4 transition-all duration-300 ${
+              isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+          >
+            {project.techStack.map(tech => (
+              <span
+                key={tech}
+                className="px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded backdrop-blur-sm border border-neon-cyan/30"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* Truncated list (top 3) for mobile */}
-        <div
-          className={`flex md:hidden flex-wrap gap-2 mb-4 transition-all duration-300 ${
-            isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}
-        >
-          {project.techStack.slice(0, 3).map(tech => (
-            <span
-              key={tech}
-              className="px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded backdrop-blur-sm border border-neon-cyan/30"
-            >
-              {tech}
-            </span>
-          ))}
+        {/* Truncated skill list for small screens (top 3 only) */}
+        <div className={`block md:hidden`}>
+          <div
+            className={`flex flex-wrap gap-2 mb-4 transition-all duration-300 ${
+              isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+          >
+            {project.techStack.slice(0, mobileLimit).map(tech => (
+              <span
+                key={tech}
+                className="px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded backdrop-blur-sm border border-neon-cyan/30"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
 
         <div
