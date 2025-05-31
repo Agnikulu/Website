@@ -20,23 +20,19 @@ const HeroSection = () => {
   // Typewriter effect
   useEffect(() => {
     const current = words[currentWordIndex];
-
     const timeout = setTimeout(() => {
       if (!isDeleting && displayedWord === current) {
         setTimeout(() => setIsDeleting(true), 1500);
         return;
       }
-
       if (isDeleting && displayedWord === '') {
         setIsDeleting(false);
         setCurrentWordIndex((prev) => (prev + 1) % words.length);
         return;
       }
-
       const nextWord = isDeleting
         ? current.substring(0, displayedWord.length - 1)
         : current.substring(0, displayedWord.length + 1);
-
       setDisplayedWord(nextWord);
     }, isDeleting ? 80 : 120);
 
@@ -177,7 +173,10 @@ const HeroSection = () => {
         <h2 className="text-xl text-gray-300 font-medium mb-4">Experience</h2>
         <div className="space-y-6">
           {projectData.map((project) => (
-            <div key={project.id} className="relative flex flex-col md:flex-row items-start justify-between gap-4">
+            <div 
+              key={project.id} 
+              className="relative flex flex-col md:flex-row items-start justify-between gap-4"
+            >
               {/* Date */}
               <div className="text-gray-400 text-xs font-medium text-right w-full md:w-[100px]">
                 {project.date}
@@ -188,7 +187,18 @@ const HeroSection = () => {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden w-full h-32 md:h-[180px] transition-all duration-500 hover:cursor-pointer"
+                className="
+                  group 
+                  relative 
+                  bg-background-light 
+                  border border-neon-cyan/20 
+                  rounded-md 
+                  overflow-hidden 
+                  w-full 
+                  h-32 md:h-[180px] 
+                  transition-all duration-500 
+                  hover:cursor-pointer
+                "
               >
                 {/* Background Image + Dark Overlay */}
                 <div className="absolute inset-0 z-0">
@@ -206,25 +216,37 @@ const HeroSection = () => {
                 </div>
 
                 {/* Title */}
-                <div className="absolute inset-0 flex items-center justify-center text-center p-6 z-10 transition-all duration-500 ease-in-out">
-                  <h3 className="text-xl md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide 
-                    transition-all duration-500 ease-in-out group-hover:text-neon-cyan
-                    group-hover:translate-y-[-160%] group-hover:translate-x-[-20%]"
-                  >
+                <div className="absolute inset-0 flex items-center justify-center text-center p-4 md:p-6 z-10 transition-all duration-500 ease-in-out">
+                  <h3 className="
+                    text-lg md:text-2xl 
+                    font-extrabold 
+                    text-white 
+                    font-cool 
+                    uppercase 
+                    tracking-wide 
+                    transition-all 
+                    duration-500 
+                    ease-in-out 
+                    group-hover:text-neon-cyan 
+                    -translate-y-0 
+                    md:group-hover:translate-y-[-160%] 
+                    md:group-hover:translate-x-[-20%] 
+                    group-hover:translate-y-[-100%]
+                  ">
                     {project.title}
                   </h3>
                 </div>
 
                 {/* Description & Tech Stack (hidden until hover) */}
-                <div className="absolute inset-0 flex flex-col justify-end items-center text-center p-6 pb-6 z-10 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <p className="text-gray-300 mb-4 text-sm font-minimalist leading-relaxed">
+                <div className="absolute inset-0 flex flex-col justify-end items-center text-center p-4 md:p-6 pb-6 z-10 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                  <p className="text-gray-300 mb-4 text-xs md:text-sm font-minimalist leading-relaxed">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-1 justify-center">
                     {project.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 bg-background/50 text-neon-cyan text-sm rounded border border-neon-cyan/30"
+                        className="px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30"
                       >
                         {tech}
                       </span>
