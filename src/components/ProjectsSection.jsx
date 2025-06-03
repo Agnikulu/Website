@@ -122,55 +122,34 @@ const ProjectsSection = () => {
 /*
   ProjectCard:
   - Splits techStack into two parts: the first three badges (always visible), and the rest (hover-only).
-  - Uses both “isTouchDevice” and “isMobileWidth” to decide whether to render the hover-only block.
-    - If the screen width is < 768px, treat as mobile (hide hover-only).
-    - Otherwise, if it’s not a touch device and screen width ≥ 768px, show hover-only on hover.
+  - Uses a robust “mobile detection” combining user-agent sniffing and pointer-coarse media query.
+    - If the device is detected as mobile (phone/tablet), hide the hover-only section entirely.
+    - Otherwise, show hover-only badges + “Learn More” on hover (desktop/laptop).
 */
 const ProjectCard = ({ project }) => {
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const [isMobileWidth, setIsMobileWidth] = useState(false);
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
 
   useEffect(() => {
-    /*
-      Detect whether the device supports touch input:
-        - 'ontouchstart' in window (legacy)
-        OR
-        - navigator.maxTouchPoints > 0 (modern)
-    */
-    const touchCapable =
-      typeof window !== 'undefined' &&
-      ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    // 1) User-Agent sniff for common mobile keywords:
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const mobileUaRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    const isUaMobile = mobileUaRegex.test(ua);
 
-    setIsTouchDevice(touchCapable);
+    // 2) matchMedia check for “pointer: coarse” (most touch screens) 
+    //    Note: some laptops have coarse pointers, so we combine with UA check
+    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
-    // Also check initial window width
-    if (typeof window !== 'undefined') {
-      setIsMobileWidth(window.innerWidth < 768);
-    }
+    // 3) Determination: treat as mobile if UA indicates mobile OR pointer is coarse 
+    //    AND UA sniff confirms it’s a phone/tablet (prevents coarse-pointer laptops)
+    const mobileDetected = isUaMobile || (isCoarsePointer && isUaMobile);
 
-    // Add resize listener to update isMobileWidth
-    const handleResize = () => {
-      setIsMobileWidth(window.innerWidth < 768);
-    };
-    window.addEventListener('resize', handleResize);
-
-    // Clean up listener on unmount
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    setIsMobileDevice(mobileDetected);
   }, []);
 
   // Always-visible badges (first three)
   const alwaysVisible = project.techStack.slice(0, 3);
   // Remaining badges for hover-only
   const onHoverOnly = project.techStack.slice(3);
-
-  // Determine if the hover-only content should render:
-  // Show it only if:
-  //  1. Screen is at least 768px wide (not mobile width)
-  //  2. Device is not touch-capable OR has both mouse & touch (some hybrid laptops)
-  //  Essentially: hide on any device that is <768px OR is touch-only.
-  const shouldRenderHoverOnly = !isMobileWidth && (!isTouchDevice || window.matchMedia('(hover: hover) and (pointer: fine)').matches);
 
   return (
     <article className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden aspect-[3/2] transform transition-all duration-500">
@@ -208,7 +187,8 @@ const ProjectCard = ({ project }) => {
         </div>
 
         {/* ─── HOVER‐ONLY SECTION ─── */}
-        {shouldRenderHoverOnly && onHoverOnly.length > 0 && (
+        {/* Render only if NOT mobile */}
+        {!isMobileDevice && onHoverOnly.length > 0 && (
           <div className="flex flex-col gap-2">
             {/* Extra badges, hidden until hover */}
             <div className="flex flex-wrap gap-1 md:gap-2 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
