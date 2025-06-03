@@ -294,36 +294,46 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
 
         {isMobileDevice ? (
           <>
-            {/* Closed state: center title & subtitle */}
-            {!isOpen && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 z-10">
-                <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
-                  {project.title}
-                </h3>
-                <p className="text-xs md:text-sm text-gray-300 mt-2">
-                  {project.subtitle}
-                </p>
-              </div>
-            )}
+            {/* Title + Subtitle flying animation */}
+            <div
+              className={`
+                absolute inset-0
+                flex flex-col items-center justify-center text-center p-4 z-10
+                transition-transform duration-500 ease-in-out
+                ${isOpen ? "-translate-y-full" : "translate-y-0"}
+              `}
+            >
+              <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
+                {project.title}
+              </h3>
+              <p className="text-xs md:text-sm text-gray-300 mt-2">
+                {project.subtitle}
+              </p>
+            </div>
 
-            {/* Open state: center subtitle (position) + skills */}
-            {isOpen && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 z-10">
-                <p className="text-white text-sm md:text-base font-semibold mb-3">
-                  {project.subtitle}
-                </p>
-                <div className="flex flex-wrap justify-center px-2">
-                  {project.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+            {/* Overlay with subtitle (position) + skills, centered */}
+            <div
+              className={`
+                absolute inset-0
+                flex flex-col items-center justify-center text-center p-4 z-10
+                transition-all duration-500 ease-in-out
+                ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}
+              `}
+            >
+              <p className="text-white text-sm md:text-base font-semibold mb-3">
+                {project.subtitle}
+              </p>
+              <div className="flex flex-wrap justify-center px-2">
+                {project.techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
-            )}
+            </div>
           </>
         ) : (
           <>
