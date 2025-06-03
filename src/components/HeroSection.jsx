@@ -1,8 +1,9 @@
 // src/components/HeroSection.jsx
 
 import React, { useState, useEffect } from 'react';
-import { projectData } from './ProjectsSection'; // Each project needs: id, title, subtitle, description, techStack, date, image, link, category
 import profilePic from '../../pic.png';
+import { projectData } from './ProjectsSection'; 
+// Each project: { id, title, subtitle, description, techStack, date, image, link, category }
 
 const HeroSection = () => {
   const [visible, setVisible] = useState(false);
@@ -12,6 +13,9 @@ const HeroSection = () => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [displayedWord, setDisplayedWord] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+
+  // Track if user is on a mobile device
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
 
   useEffect(() => {
     setVisible(true);
@@ -38,6 +42,23 @@ const HeroSection = () => {
 
     return () => clearTimeout(timeout);
   }, [displayedWord, currentWordIndex, isDeleting, words]);
+
+  // -------------------------------------------------------------
+  // Mobile detection: UA sniff + pointer: coarse
+  // -------------------------------------------------------------
+  useEffect(() => {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const mobileUaRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    const isUaMobile = mobileUaRegex.test(ua);
+
+    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+
+    // Only treat as mobile if UA says mobile (prevents coarse‐pointer laptops from being flagged)
+    const mobileDetected = isUaMobile || (isCoarsePointer && isUaMobile);
+
+    setIsMobileDevice(mobileDetected);
+  }, []);
+  // -------------------------------------------------------------
 
   return (
     <section
@@ -220,9 +241,9 @@ const HeroSection = () => {
                 {/*
                   Title & Subtitle wrapper:
                   - On hover, translate up/left by the original amount so it doesn't fly off-screen
-                  - group-hover:translate-y-[-100%] (same as original for a single-line title)
-                  - md:group-hover:translate-y-[-160%] (same as original for desktop)
-                  - md:group-hover:translate-x-[-20%] (same as original)
+                  - group-hover:translate-y-[-100%] (for one-line title shift)
+                  - md:group-hover:translate-y-[-160%] (for desktop)
+                  - md:group-hover:translate-x-[-20%] (slide left a bit on desktop)
                 */}
                 <div
                   className="
@@ -249,40 +270,44 @@ const HeroSection = () => {
                   </p>
                 </div>
 
-                {/* Description & Tech Stack (hidden until hover) */}
-                <div
-                  className="
-                    absolute
-                    inset-0
-                    flex
-                    flex-col
-                    justify-end
-                    items-center
-                    text-center
-                    p-4 md:p-6 pb-6
-                    z-10
-                    opacity-0
-                    group-hover:opacity-100
-                    transition-all duration-500
-                  "
-                >
-                  {/* Description Text */}
-                  <p className="text-gray-300 mb-4 text-xs md:text-sm font-minimalist leading-relaxed">
-                    {project.description}
-                  </p>
+                {/* ─── DESCRIPTION & TECH STACK (HOVER-ONLY) ─── */}
+                {/* Only render if not mobile */}
+                {!isMobileDevice && (
+                  <div
+                    className="
+                      absolute
+                      inset-0
+                      flex
+                      flex-col
+                      justify-end
+                      items-center
+                      text-center
+                      p-4 md:p-6 pb-6
+                      z-10
+                      opacity-0
+                      group-hover:opacity-100
+                      transition-all duration-500
+                    "
+                  >
+                    {/* Description Text */}
+                    <p className="text-gray-300 mb-4 text-xs md:text-sm font-minimalist leading-relaxed">
+                      {project.description}
+                    </p>
 
-                  {/* Skills: inline-blocks centered with margin */}
-                  <div className="w-full text-center">
-                    {project.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                    {/* Skills: inline-blocks centered with margin */}
+                    <div className="w-full text-center">
+                      {project.techStack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
+                {/* ────────────────────────────────────────────────────── */}
               </a>
             </div>
           ))}
@@ -290,16 +315,16 @@ const HeroSection = () => {
 
         {/*
           Resume Button (centered under the “tile” column):
-          - grid-cols-1 on mobile → one column (button spans full width, centered)
+          - grid-cols-1 on mobile → button spans full width, centered
           - md:grid-cols-[100px_1fr] on desktop:
-              • first column = 100px (empty, aligning under date)
-              • second column = the rest (button is flex-justified center)
+              • first column = 100px (aligns under date)
+              • second column = the rest (button centered)
         */}
         <div className="mt-6 pb-16 grid grid-cols-1 md:grid-cols-[100px_1fr]">
-          {/* empty placeholder to reserve 100px on md */}
+          {/* empty placeholder for 100px on md */}
           <div />
 
-          {/* actual button container, centered in column 2 */}
+          {/* button container, centered */}
           <div className="flex justify-center">
             <a
               href="https://drive.google.com/file/d/1A70UP2_LppflOX7Tx_e-oIPva3B4zgLW/view?usp=sharing"

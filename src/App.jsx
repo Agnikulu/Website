@@ -1,3 +1,5 @@
+// src/App.jsx
+
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
@@ -35,7 +37,7 @@ export const App = () => {
       <Navbar />
       <main>
         <HeroSection />
-        {/* <ProjectsSection /> */}
+        <ProjectsSection />
       </main>
       {/* <Footer /> */}
     </div>

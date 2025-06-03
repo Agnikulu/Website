@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 
 /*
-  Update this array with your own personal experiences.
+  Update this array with your own personal experiences only
 */
 const projectData = [
   {
@@ -121,26 +121,22 @@ const ProjectsSection = () => {
 
 /*
   ProjectCard:
-  - Splits techStack into two parts: the first three badges (always visible), and the rest (hover-only).
-  - Uses a robust “mobile detection” combining user-agent sniffing and pointer-coarse media query.
-    - If the device is detected as mobile (phone/tablet), hide the hover-only section entirely.
-    - Otherwise, show hover-only badges + “Learn More” on hover (desktop/laptop).
+  - Splits techStack into two parts: the first three badges (always visible) and the rest (hover-only).
+  - Uses mobile detection (UA sniff + pointer-coarse) to decide whether to hide hover-only entirely on phones/tablets.
 */
 const ProjectCard = ({ project }) => {
   const [isMobileDevice, setIsMobileDevice] = useState(false);
 
   useEffect(() => {
-    // 1) User-Agent sniff for common mobile keywords:
+    // 1) Check user-agent for common mobile keywords
     const ua = navigator.userAgent || navigator.vendor || window.opera;
     const mobileUaRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
     const isUaMobile = mobileUaRegex.test(ua);
 
-    // 2) matchMedia check for “pointer: coarse” (most touch screens) 
-    //    Note: some laptops have coarse pointers, so we combine with UA check
+    // 2) Check pointer-coarse (common on touch screens)
     const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
-    // 3) Determination: treat as mobile if UA indicates mobile OR pointer is coarse 
-    //    AND UA sniff confirms it’s a phone/tablet (prevents coarse-pointer laptops)
+    // 3) Treat as mobile if UA says mobile OR (pointer coarse AND UA says mobile)
     const mobileDetected = isUaMobile || (isCoarsePointer && isUaMobile);
 
     setIsMobileDevice(mobileDetected);
@@ -148,12 +144,12 @@ const ProjectCard = ({ project }) => {
 
   // Always-visible badges (first three)
   const alwaysVisible = project.techStack.slice(0, 3);
-  // Remaining badges for hover-only
+  // The rest go into hover-only
   const onHoverOnly = project.techStack.slice(3);
 
   return (
     <article className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden aspect-[3/2] transform transition-all duration-500">
-      {/* Background image with dark overlay */}
+      {/* Background image + dark overlay */}
       <div className="absolute inset-0 z-0">
         <img
           src={project.image}
@@ -187,10 +183,10 @@ const ProjectCard = ({ project }) => {
         </div>
 
         {/* ─── HOVER‐ONLY SECTION ─── */}
-        {/* Render only if NOT mobile */}
+        {/* Only render on non-mobile devices */}
         {!isMobileDevice && onHoverOnly.length > 0 && (
           <div className="flex flex-col gap-2">
-            {/* Extra badges, hidden until hover */}
+            {/* Extra badges (hidden until hover) */}
             <div className="flex flex-wrap gap-1 md:gap-2 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
               {onHoverOnly.map((tech) => (
                 <span
@@ -202,7 +198,7 @@ const ProjectCard = ({ project }) => {
               ))}
             </div>
 
-            {/* “Learn More” link, also hidden until hover */}
+            {/* “Learn More” link (also hidden until hover) */}
             <div className="opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 mt-2">
               <a
                 href={project.link}
