@@ -293,108 +293,105 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
           {project.category}
         </div>
 
-        {/* Title & Subtitle wrapper: vertically centered on mobile */}
-        <div
-          className={`
-            absolute
-            inset-0
-            flex
-            flex-col
-            items-center
-            justify-center
-            text-center
-            p-4 md:p-6
-            z-10
-            transition-all duration-500 ease-in-out
-            ${
-              isMobileDevice
-                ? isOpen
-                  ? "translate-y-[-100%]"
-                  : "translate-y-0"
-                : "group-hover:translate-y-[-100%] md:group-hover:translate-y-[-160%] md:group-hover:translate-x-[-20%]"
-            }
-          `}
-        >
-          <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
-            {project.title}
-          </h3>
-          <p className="text-xs md:text-sm text-gray-300 mt-2">
-            {project.subtitle}
-          </p>
-        </div>
-
-        {/* Overlay with description + all skills */}
         {isMobileDevice ? (
-          <div
-            className={`
-              absolute
-              inset-0
-              flex
-              flex-col
-              justify-end
-              items-center
-              text-center
-              p-4 md:p-6 pb-6
-              z-10
-              transition-all duration-500
-              ${isOpen ? "opacity-100" : "opacity-0"}
-            `}
-          >
-            {/* Description Text */}
-            <p className="text-gray-300 mb-4 text-xs md:text-sm font-minimalist leading-relaxed">
-              {project.description}
-            </p>
+          <>
+            {/* If closed: center just title & subtitle */}
+            {!isOpen && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 z-10 transition-all duration-500">
+                <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
+                  {project.title}
+                </h3>
+                <p className="text-xs md:text-sm text-gray-300 mt-2">
+                  {project.subtitle}
+                </p>
+              </div>
+            )}
 
-            {/* Skills: all techStack badges */}
-            <div className="w-full text-center">
-              {project.techStack.map((tech) => (
-                <span
-                  key={tech}
-                  className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            {/* (Learn More button removed) */}
-          </div>
+            {/* If open: center title, subtitle, description, and skills */}
+            {isOpen && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 z-10 transition-all duration-500">
+                <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
+                  {project.title}
+                </h3>
+                <p className="text-xs md:text-sm text-gray-300 mt-2">
+                  {project.subtitle}
+                </p>
+                <p className="text-gray-300 mb-4 text-xs md:text-sm font-minimalist leading-relaxed px-2">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap justify-center px-2">
+                  {project.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
         ) : (
-          <div
-            className="
-              absolute
-              inset-0
-              flex
-              flex-col
-              justify-end
-              items-center
-              text-center
-              p-4 md:p-6 pb-6
-              z-10
-              opacity-0
-              group-hover:opacity-100
-              transition-all duration-500
-            "
-          >
-            {/* Description Text */}
-            <p className="text-gray-300 mb-4 text-xs md:text-sm font-minimalist leading-relaxed">
-              {project.description}
-            </p>
-
-            {/* Skills: all techStack badges */}
-            <div className="w-full text-center">
-              {project.techStack.map((tech) => (
-                <span
-                  key={tech}
-                  className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
-                >
-                  {tech}
-                </span>
-              ))}
+          <>
+            {/* Desktop: Title & Subtitle wrapper (slides up on hover) */}
+            <div
+              className="
+                absolute
+                inset-0
+                flex
+                flex-col
+                items-center
+                justify-center
+                text-center
+                p-4 md:p-6
+                z-10
+                transition-all duration-500 ease-in-out
+                group-hover:translate-y-[-100%]
+                md:group-hover:translate-y-[-160%]
+                md:group-hover:translate-x-[-20%]
+              "
+            >
+              <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
+                {project.title}
+              </h3>
+              <p className="text-xs md:text-sm text-gray-300 mt-2">
+                {project.subtitle}
+              </p>
             </div>
 
-            {/* (Learn More button removed) */}
-          </div>
+            {/* Desktop: Overlay with description + all skills */}
+            <div
+              className="
+                absolute
+                inset-0
+                flex
+                flex-col
+                justify-end
+                items-center
+                text-center
+                p-4 md:p-6 pb-6
+                z-10
+                opacity-0
+                group-hover:opacity-100
+                transition-all duration-500
+              "
+            >
+              <p className="text-gray-300 mb-4 text-xs md:text-sm font-minimalist leading-relaxed">
+                {project.description}
+              </p>
+              <div className="w-full text-center">
+                {project.techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </>
         )}
       </a>
     </div>
