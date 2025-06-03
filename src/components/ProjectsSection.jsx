@@ -137,6 +137,7 @@ const ProjectCard = ({ project }) => {
     const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
     // 3) Treat as mobile if UA says mobile OR (pointer coarse AND UA says mobile)
+    //    This prevents flagging coarse-pointer laptops as “mobile”
     const mobileDetected = isUaMobile || (isCoarsePointer && isUaMobile);
 
     setIsMobileDevice(mobileDetected);
@@ -148,7 +149,18 @@ const ProjectCard = ({ project }) => {
   const onHoverOnly = project.techStack.slice(3);
 
   return (
-    <article className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden aspect-[3/2] transform transition-all duration-500">
+    <article className="
+      group
+      relative
+      bg-background-light
+      border border-neon-cyan/20
+      rounded-md
+      overflow-hidden
+      h-64             /* mobile-only: make it taller */
+      md:aspect-[3/2]  /* restore 3:2 aspect ratio at md+ */
+      md:h-auto
+      transform transition-all duration-500
+    ">
       {/* Background image + dark overlay */}
       <div className="absolute inset-0 z-0">
         <img
@@ -183,7 +195,6 @@ const ProjectCard = ({ project }) => {
         </div>
 
         {/* ─── HOVER‐ONLY SECTION ─── */}
-        {/* Only render on non-mobile devices */}
         {!isMobileDevice && onHoverOnly.length > 0 && (
           <div className="flex flex-col gap-2">
             {/* Extra badges (hidden until hover) */}
