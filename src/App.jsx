@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
+import PublicationsSection from './components/PublicationsSection';
 import Footer from './components/Footer';
 import Cursor from './components/Cursor';
 
@@ -14,7 +15,6 @@ export const App = () => {
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -34,10 +34,15 @@ export const App = () => {
     <div className="min-h-screen bg-background text-text-primary font-sans">
       <Cursor />
       <Navbar />
+
       <main>
         <HeroSection />
+
+        {/* ← Removed ProjectsSection entirely */}
+        <PublicationsSection />
       </main>
-      {/* <Footer /> */}
+
+      <Footer />
     </div>
   );
 };
