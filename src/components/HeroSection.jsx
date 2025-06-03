@@ -16,7 +16,7 @@ const HeroSection = () => {
   const [displayedWord, setDisplayedWord] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Track if the user is on a device without hover (i.e. mobile/touch)
+  // Track if the user is on a device without hover (i.e., touch/mobile)
   const [isMobileDevice, setIsMobileDevice] = useState(false);
 
   useEffect(() => {
@@ -232,14 +232,17 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
   const handleClick = (e) => {
     if (isMobileDevice) {
       e.preventDefault();
+      e.stopPropagation();
       setIsOpen((prev) => !prev);
     }
   };
 
-  // Collapse overlay when clicking anywhere outside
+  // Collapse overlay when clicking anywhere outside, but only after open
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleOutsideClick = (e) => {
-      if (isOpen && cardRef.current && !cardRef.current.contains(e.target)) {
+      if (cardRef.current && !cardRef.current.contains(e.target)) {
         setIsOpen(false);
       }
     };
