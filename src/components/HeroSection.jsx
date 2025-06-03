@@ -16,7 +16,7 @@ const HeroSection = () => {
   const [displayedWord, setDisplayedWord] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Track if the user is on a mobile device
+  // Track if the user is on a device without hover (i.e. mobile/touch)
   const [isMobileDevice, setIsMobileDevice] = useState(false);
 
   useEffect(() => {
@@ -46,19 +46,17 @@ const HeroSection = () => {
   }, [displayedWord, currentWordIndex, isDeleting]);
 
   // -------------------------------------------------------------
-  //  Mobile detection (User‐Agent sniff + pointer-coarse)
+  //  Detect touch-only (mobile) vs hoverable (desktop) devices
   // -------------------------------------------------------------
   useEffect(() => {
-    const ua = navigator.userAgent || navigator.vendor || window.opera;
-    const mobileUaRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-    const isUaMobile = mobileUaRegex.test(ua);
+    const mq = window.matchMedia('(hover: none), (pointer: coarse)');
+    setIsMobileDevice(mq.matches);
 
-    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
-
-    // Treat as mobile if UA says mobile OR (pointer is coarse AND UA says mobile)
-    const mobileDetected = isUaMobile || (isCoarsePointer && isUaMobile);
-
-    setIsMobileDevice(mobileDetected);
+    const handler = (e) => {
+      setIsMobileDevice(e.matches);
+    };
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
   }, []);
   // -------------------------------------------------------------
 
@@ -257,6 +255,7 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
       </div>
 
       {/* Project Tile */}
+      {/* Use anchor for desktop, but intercept clicks on mobile */}
       <a
         href={project.link}
         onClick={handleClick}
