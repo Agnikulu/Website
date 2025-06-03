@@ -56,7 +56,6 @@ const HeroSection = () => {
     const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
     // Treat as mobile if UA says mobile OR (pointer is coarse AND UA says mobile)
-    // This prevents flagging coarse-pointer laptops as “mobile”
     const mobileDetected = isUaMobile || (isCoarsePointer && isUaMobile);
 
     setIsMobileDevice(mobileDetected);
@@ -250,6 +249,12 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
     return () => document.removeEventListener("click", handleOutsideClick);
   }, [isOpen]);
 
+  // On desktop, use <a> for link + hover; on mobile, use <div> to toggle open/close
+  const ContainerTag = isMobileDevice ? "div" : "a";
+  const containerProps = isMobileDevice
+    ? { onClick: handleClick, ref: cardRef }
+    : { href: project.link, target: "_blank", rel: "noopener noreferrer" };
+
   return (
     <div className="relative flex flex-col md:flex-row items-start justify-between gap-4">
       {/* Date Column */}
@@ -258,12 +263,8 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
       </div>
 
       {/* Project Tile */}
-      <a
-        href={project.link}
-        onClick={handleClick}
-        target="_blank"
-        rel="noopener noreferrer"
-        ref={cardRef}
+      <ContainerTag
+        {...containerProps}
         className={`
           group
           relative
@@ -393,7 +394,7 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
             </div>
           </>
         )}
-      </a>
+      </ContainerTag>
     </div>
   );
 };
