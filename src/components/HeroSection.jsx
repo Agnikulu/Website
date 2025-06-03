@@ -2,10 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import profilePic from '../../pic.png';
-
-// “projectData” drives the Experience timeline. Each entry must include:
-// { id, title, subtitle, description, techStack (array), date, image, link, category }
-import { projectData } from './ProjectsSection';
+import { projectData } from './ProjectsSection'; 
+// Each project: { id, title, subtitle, description, techStack (array), date, image, link, category }
 
 const HeroSection = () => {
   const [visible, setVisible] = useState(false);
@@ -16,7 +14,7 @@ const HeroSection = () => {
   const [displayedWord, setDisplayedWord] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Track if the user is on a mobile device
+  // Track if user is on a mobile device
   const [isMobileDevice, setIsMobileDevice] = useState(false);
 
   useEffect(() => {
@@ -46,7 +44,7 @@ const HeroSection = () => {
   }, [displayedWord, currentWordIndex, isDeleting]);
 
   // -------------------------------------------------------------
-  //  Mobile detection (User‐Agent sniff + pointer-coarse)
+  // Mobile detection (User-Agent sniff + pointer: coarse)
   // -------------------------------------------------------------
   useEffect(() => {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
@@ -56,7 +54,7 @@ const HeroSection = () => {
     const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
     // Treat as mobile if UA says mobile OR (pointer is coarse AND UA says mobile)
-    // This prevents flagging coarse-pointer laptops as “mobile”
+    // Avoids flagging coarse-pointer laptops as “mobile”
     const mobileDetected = isUaMobile || (isCoarsePointer && isUaMobile);
 
     setIsMobileDevice(mobileDetected);
@@ -92,7 +90,7 @@ const HeroSection = () => {
         </h1>
         <p className="text-gray-400 mt-2 leading-relaxed">
           Studying Computer Science at the University of Maryland with minors in Data Science and Technology
-          Entrepreneurship & Corporate Innovation. Passionate about building software solutions, exploring AI’s
+          Entrepreneurship &amp; Corporate Innovation. Passionate about building software solutions, exploring AI’s
           potential in healthcare, and driving innovation in early-stage startups.
         </p>
 
@@ -192,152 +190,22 @@ const HeroSection = () => {
       {/* ← Right Side (Experience Cards Timeline) */}
       <div className="w-full md:w-1/2 md:overflow-y-auto md:max-h-screen p-4 self-start mt-8 md:mt-0">
         <h2 className="text-xl text-gray-300 font-medium mb-4">Experience</h2>
-        <div className="space-y-6">
+        <div className="space-y-8">
           {projectData.map((project) => (
-            <div
-              key={project.id}
-              className="relative flex flex-col md:flex-row items-start justify-between gap-4"
-            >
-              {/* Date Column */}
-              <div className="text-gray-400 text-xs font-medium text-right w-full md:w-[100px]">
-                {project.date}
-              </div>
-
-              {/* Project Tile */}
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  group
-                  relative
-                  bg-background-light
-                  border border-neon-cyan/20
-                  rounded-md
-                  overflow-hidden
-                  w-full
-                  h-32 md:h-[180px]
-                  transition-all duration-500
-                  hover:cursor-pointer
-                "
-              >
-                {/* Background Image + Dark Overlay */}
-                <div className="absolute inset-0 z-0">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-75"></div>
-                </div>
-
-                {/* Category Tag */}
-                <div className="absolute top-5 right-4 bg-neon-purple/80 text-white text-xs px-3 py-1 rounded-full z-10 backdrop-blur-sm">
-                  {project.category}
-                </div>
-
-                {/*
-                  Title & Subtitle wrapper:
-                  Moves up/left on group-hover (desktop)
-                */}
-                <div
-                  className="
-                    absolute
-                    inset-0
-                    flex
-                    flex-col
-                    items-center
-                    justify-center
-                    text-center
-                    p-4 md:p-6
-                    z-10
-                    transition-all duration-500 ease-in-out
-                    group-hover:translate-y-[-100%]
-                    md:group-hover:translate-y-[-160%]
-                    md:group-hover:translate-x-[-20%]
-                  "
-                >
-                  <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
-                    {project.title}
-                  </h3>
-                  <p className="text-xs md:text-sm text-gray-300 mt-2">
-                    {project.subtitle}
-                  </p>
-                </div>
-
-                {/*
-                  ─── MOBILE: Show only first 3 skills immediately ───
-                  Render when isMobileDevice === true
-                */}
-                {isMobileDevice && (
-                  <div className="absolute bottom-2 inset-x-0 flex justify-center flex-wrap px-2">
-                    {project.techStack.slice(0, 3).map((tech) => (
-                      <span
-                        key={tech}
-                        className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {/*
-                  ─── DESKTOP: Hover‐overlay with full description + all skills ───
-                  Only render when isMobileDevice === false
-                */}
-                {!isMobileDevice && (
-                  <div
-                    className="
-                      absolute
-                      inset-0
-                      flex
-                      flex-col
-                      justify-end
-                      items-center
-                      text-center
-                      p-4 md:p-6 pb-6
-                      z-10
-                      opacity-0
-                      group-hover:opacity-100
-                      transition-all duration-500
-                    "
-                  >
-                    {/* Description Text */}
-                    <p className="text-gray-300 mb-4 text-xs md:text-sm font-minimalist leading-relaxed">
-                      {project.description}
-                    </p>
-
-                    {/* Skills: all techStack badges */}
-                    <div className="w-full text-center">
-                      {project.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                {/* ────────────────────────────────────────────────────── */}
-              </a>
-            </div>
+            <ProjectCard key={project.id} project={project} isMobileDevice={isMobileDevice} />
           ))}
         </div>
 
         {/*
           Resume Button (centered under the timeline):
-          - On mobile: single column, button spans full width, centered
-          - On desktop: two columns, an empty 100px column aligning under date,
-            and the button in column 2 centered.
+          - On mobile: single column → button spans full width, centered
+          - On desktop: two columns → first column empty 100px, second column button centered
         */}
         <div className="mt-6 pb-16 grid grid-cols-1 md:grid-cols-[100px_1fr]">
           {/* Empty placeholder for 100px on md */}
           <div />
 
-          {/* Button container (centered) */}
+          {/* Button container, centered */}
           <div className="flex justify-center">
             <a
               href="https://drive.google.com/file/d/1A70UP2_LppflOX7Tx_e-oIPva3B4zgLW/view?usp=sharing"
@@ -351,6 +219,131 @@ const HeroSection = () => {
         </div>
       </div>
     </section>
+  );
+};
+
+/*
+  ProjectCard:
+  - On desktop: overlay (description + all badges) appears on hover.
+  - On mobile: overlay is hidden by default; tapping the card toggles it.
+  - Card height is increased (h-40 on mobile instead of h-32) so content is less cramped.
+*/
+const ProjectCard = ({ project, isMobileDevice }) => {
+  // Track whether the overlay is visible on mobile
+  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+
+  // Helper: on mobile, tapping toggles overlay; on desktop, let hover handle it
+  const handleClick = (e) => {
+    if (isMobileDevice) {
+      e.preventDefault(); // prevent navigation on first tap
+      setIsOverlayVisible((prev) => !prev);
+    }
+  };
+
+  // Decide whether to show the overlay container:
+  // - On desktop: true only during hover (handled by tailwind classes)
+  // - On mobile: controlled by isOverlayVisible
+  const shouldShowOverlayMobile = isMobileDevice && isOverlayVisible;
+
+  return (
+    <div
+      className="relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden transition-transform duration-500 hover:scale-[1.01]"
+      onClick={handleClick}
+    >
+      {/* Background image + dark overlay */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={project.image}
+          alt={project.title}
+          className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${
+            !isMobileDevice ? 'group-hover:scale-110' : isOverlayVisible ? 'scale-110' : ''
+          }`}
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-75" />
+      </div>
+
+      {/* Category Tag */}
+      <div className="absolute top-3 right-3 bg-neon-purple/80 text-white text-xs px-3 py-1 rounded-full z-10 backdrop-blur-sm">
+        {project.category}
+      </div>
+
+      {/* Title & Subtitle wrapper */}
+      <div
+        className={`
+          absolute inset-0 flex flex-col items-center justify-center text-center p-4 md:p-6 z-10
+          transition-all duration-500 ease-in-out
+          ${!isMobileDevice ? 'group-hover:translate-y-[-100%] md:group-hover:translate-y-[-160%] md:group-hover:translate-x-[-20%]' : ''}
+          ${isMobileDevice && isOverlayVisible ? 'opacity-0' : ''}
+        `}
+      >
+        <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
+          {project.title}
+        </h3>
+        <p className="text-xs md:text-sm text-gray-300 mt-2">
+          {project.subtitle}
+        </p>
+      </div>
+
+      {/* ─── OVERLAY (Description + Badges) ─── */}
+      {/* On desktop: appear on hover via opacity-0 → group-hover:opacity-100 */}
+      {/* On mobile: appear when isOverlayVisible is true */}
+      <div
+        className={`
+          absolute inset-0 flex flex-col justify-end items-center text-center p-4 md:p-6 pb-6 z-20
+          ${!isMobileDevice
+            ? 'opacity-0 group-hover:opacity-100 transition-all duration-500'
+            : shouldShowOverlayMobile
+            ? 'opacity-100'
+            : 'hidden'
+          }
+        `}
+      >
+        {/* Description Text */}
+        <p className="text-gray-300 mb-4 text-xs md:text-sm font-minimalist leading-relaxed">
+          {project.description}
+        </p>
+
+        {/* Badges (all of them) */}
+        <div className="w-full text-center">
+          {project.techStack.map((tech) => (
+            <span
+              key={tech}
+              className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        {/* “Learn More” Link (visible inside overlay) */}
+        <a
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-flex items-center gap-1 text-neon-cyan text-xs md:text-sm hover:text-white transition-colors"
+        >
+          <span>Learn More</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="md:w-4 md:h-4"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+      {/* ────────────────────────────────────────────────────── */}
+
+      {/* Increase card height for more breathing room */}
+      <div className="h-40 md:h-[220px]"></div>
+    </div>
   );
 };
 
