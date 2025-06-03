@@ -1,10 +1,9 @@
 // src/components/ProjectsSection.jsx
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 /*
-  Update with personal experiences only.
-  This is the array of featured projects.
+  Update this array with your own personal experiences.
 */
 const projectData = [
   {
@@ -60,7 +59,9 @@ const projectData = [
 ];
 
 /*
-  ProjectsSection: renders filter buttons + grid of ProjectCard components.
+  ProjectsSection:
+  - Renders a set of filter buttons based on categories.
+  - Displays a grid of ProjectCard components according to the selected filter.
 */
 const ProjectsSection = () => {
   const [filter, setFilter] = useState('All');
@@ -118,21 +119,39 @@ const ProjectsSection = () => {
   );
 };
 
-
 /*
-  ProjectCard: represents a single project tile.
-  - Always shows up to the first three tech badges.
-  - Renders any “extra” badges + “Learn More” inside a .only-hover container,
-    which is display: none on touch/devices without hover.
+  ProjectCard:
+  - Always displays up to the first three tech badges.
+  - Detects whether the current device is a touch device (i.e., mobile/tablet).
+  - If NOT a touch device, renders the “extra” tech badges + “Learn More” link,
+    which appear on hover. On touch devices, that entire block is omitted.
 */
 const ProjectCard = ({ project }) => {
-  // Split techStack into “first three” always-visible, and the rest (hover-only).
+  // State to track whether this device supports touch input
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    /*
+      A device is considered “touch” if:
+      - window.ontouchstart is defined (legacy mobile browsers)
+      OR
+      - navigator.maxTouchPoints > 0 (modern browsers on touch screens)
+    */
+    const touchCapable =
+      typeof window !== 'undefined' &&
+      ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
+    setIsTouchDevice(touchCapable);
+  }, []);
+
+  // Always show the first three tech badges
   const alwaysVisible = project.techStack.slice(0, 3);
+  // Any remaining badges go into the “hover-only” block
   const onHoverOnly = project.techStack.slice(3);
 
   return (
     <article className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden aspect-[3/2] transform transition-all duration-500">
-      {/* Background image + dark overlay */}
+      {/* Background image with a dark overlay */}
       <div className="absolute inset-0 z-0">
         <img
           src={project.image}
@@ -153,7 +172,7 @@ const ProjectCard = ({ project }) => {
         </h3>
         <p className="text-gray-300 text-sm md:text-base">{project.description}</p>
 
-        {/* ── ALWAYS‐VISIBLE TECH BADGES (up to 3) ── */}
+        {/* ─── ALWAYS‐VISIBLE TECH BADGES (up to 3) ─── */}
         <div className="flex flex-wrap gap-1 md:gap-2 mt-2 mb-3">
           {alwaysVisible.map((tech) => (
             <span
@@ -165,10 +184,10 @@ const ProjectCard = ({ project }) => {
           ))}
         </div>
 
-        {/* ── HOVER‐ONLY SECTION ── */}
-        {/* Wrapped in “only-hover” so that on touch‐only devices it’s never displayed */}
-        {onHoverOnly.length > 0 && (
-          <div className="only-hover flex flex-col gap-2">
+        {/* ─── HOVER‐ONLY SECTION ─── */}
+        {/* Only render this block if NOT a touch device */}
+        {!isTouchDevice && onHoverOnly.length > 0 && (
+          <div className="flex flex-col gap-2">
             {/* Extra badges, hidden until hover */}
             <div className="flex flex-wrap gap-1 md:gap-2 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
               {onHoverOnly.map((tech) => (
@@ -210,7 +229,7 @@ const ProjectCard = ({ project }) => {
         )}
       </div>
 
-      {/* Decorative corner borders */}
+      {/* Decorative corner accents */}
       <div className="absolute top-0 right-0 border-t-2 border-r-2 border-neon-cyan w-6 h-6 md:w-8 md:h-8 opacity-70" />
       <div className="absolute bottom-0 left-0 border-b-2 border-l-2 border-neon-cyan w-6 h-6 md:w-8 md:h-8 opacity-70" />
     </article>
