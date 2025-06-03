@@ -1,17 +1,13 @@
-// src/App.jsx
-
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import PublicationsSection from './components/PublicationsSection';
-import Footer from './components/Footer';
 import Cursor from './components/Cursor';
 
 export const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
@@ -37,12 +33,8 @@ export const App = () => {
 
       <main>
         <HeroSection />
-
-        {/* ← Removed ProjectsSection entirely */}
         <PublicationsSection />
       </main>
-
-      <Footer />
     </div>
   );
 };
