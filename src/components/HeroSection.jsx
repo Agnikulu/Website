@@ -52,12 +52,8 @@ const HeroSection = () => {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
     const mobileUaRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
     const isUaMobile = mobileUaRegex.test(ua);
-
     const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
-
-    // Treat as mobile if UA says mobile OR (pointer is coarse AND UA says mobile)
     const mobileDetected = isUaMobile || (isCoarsePointer && isUaMobile);
-
     setIsMobileDevice(mobileDetected);
   }, []);
   // -------------------------------------------------------------
@@ -249,12 +245,6 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
     return () => document.removeEventListener("click", handleOutsideClick);
   }, [isOpen]);
 
-  // On desktop, use <a> for link + hover; on mobile, use <div> to toggle open/close
-  const ContainerTag = isMobileDevice ? "div" : "a";
-  const containerProps = isMobileDevice
-    ? { onClick: handleClick, ref: cardRef }
-    : { href: project.link, target: "_blank", rel: "noopener noreferrer" };
-
   return (
     <div className="relative flex flex-col md:flex-row items-start justify-between gap-4">
       {/* Date Column */}
@@ -263,8 +253,10 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
       </div>
 
       {/* Project Tile */}
-      <ContainerTag
-        {...containerProps}
+      <a
+        href={project.link}
+        onClick={handleClick}
+        ref={cardRef}
         className={`
           group
           relative
@@ -296,31 +288,22 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
 
         {isMobileDevice ? (
           <>
-            {/* If closed: center just title & subtitle */}
+            {/* Closed state: show title centered */}
             {!isOpen && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 z-10 transition-all duration-500">
+              <div className="absolute inset-0 flex items-center justify-center text-center p-4 z-10 transition-all duration-500">
                 <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
                   {project.title}
                 </h3>
-                <p className="text-xs md:text-sm text-gray-300 mt-2">
-                  {project.subtitle}
-                </p>
               </div>
             )}
 
-            {/* If open: center title, subtitle, description, and skills */}
+            {/* Open state: show subtitle (position) + skills centered */}
             {isOpen && (
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 z-10 transition-all duration-500">
-                <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
-                  {project.title}
-                </h3>
-                <p className="text-xs md:text-sm text-gray-300 mt-2">
+                <p className="text-white text-sm md:text-base font-semibold mb-3">
                   {project.subtitle}
                 </p>
-                <p className="text-gray-300 mb-4 text-xs md:text-sm font-minimalist leading-relaxed px-2">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap justify-center px-2">
+                <div className="flex flex-wrap justify-center">
                   {project.techStack.map((tech) => (
                     <span
                       key={tech}
@@ -394,7 +377,7 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
             </div>
           </>
         )}
-      </ContainerTag>
+      </a>
     </div>
   );
 };
