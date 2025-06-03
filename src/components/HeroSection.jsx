@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import profilePic from '../../pic.png';
 
 // “projectData” drives the Experience timeline. Each entry must include:
-// { id, title, subtitle, description, techStack (array), date, image, link, category }
+// { id, title, description (role), techStack (array), date, image, link, category }
 import { projectData } from './ProjectsSection';
 
 const HeroSection = () => {
@@ -23,7 +23,7 @@ const HeroSection = () => {
     setVisible(true);
   }, []);
 
-  // Typewriter effect for “I develop / design / create”
+  // Typewriter effect
   useEffect(() => {
     const current = words[currentWordIndex];
     const timeout = setTimeout(() => {
@@ -45,9 +45,7 @@ const HeroSection = () => {
     return () => clearTimeout(timeout);
   }, [displayedWord, currentWordIndex, isDeleting]);
 
-  // -------------------------------------------------------------
-  //  Detect touch-only (mobile) vs hoverable (desktop) devices
-  // -------------------------------------------------------------
+  // Detect touch-only (mobile) vs hoverable (desktop)
   useEffect(() => {
     const mq = window.matchMedia('(hover: none), (pointer: coarse)');
     setIsMobileDevice(mq.matches);
@@ -58,7 +56,6 @@ const HeroSection = () => {
     mq.addEventListener('change', handler);
     return () => mq.removeEventListener('change', handler);
   }, []);
-  // -------------------------------------------------------------
 
   return (
     <section
@@ -141,7 +138,7 @@ const HeroSection = () => {
           </a>
           <a
             href="mailto:agnik@umd.edu"
-            className="w-10 h-10 flex justify-center items-center rounded-full bg-background-light border border-neon-cyan/20 text-text-secondary hover:text-neon-cyan hover:border-neon-cyan/60 transition-all duration-300"
+            className="w-10 h-10 flex justify-center items-center rounded-full bg-background-light border	border-neon-cyan/20 text-text-secondary hover:text-neon-cyan hover:border-neon-cyan/60 transition-all duration-300"
           >
             {/* Gmail SVG */}
             <svg
@@ -163,7 +160,7 @@ const HeroSection = () => {
 
         {/* Terminal Box */}
         <div className="mt-8 w-full max-w-[480px] opacity-70 hover:opacity-100 transition-opacity duration-300">
-          <div className="bg-background-light border border-neon-cyan/30 rounded-md p-4 shadow-neon-glow">
+          <div className="bg-background-light border	border-neon-cyan/30 rounded-md p-4 shadow-neon-glow">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-3 h-3 bg-red-500 rounded-full"></div>
               <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
@@ -199,21 +196,15 @@ const HeroSection = () => {
           ))}
         </div>
 
-        {/* Resume Button (centered under the timeline):
-            - On mobile: single column, button spans full width, centered
-            - On desktop: two columns, an empty 100px column aligning under date,
-              and the button in column 2 centered. */}
+        {/* Resume Button (centered under the timeline) */}
         <div className="mt-6 pb-16 grid grid-cols-1 md:grid-cols-[100px_1fr]">
-          {/* Empty placeholder for 100px on md */}
           <div />
-
-          {/* Button container (centered) */}
           <div className="flex justify-center">
             <a
               href="https://drive.google.com/file/d/1A70UP2_LppflOX7Tx_e-oIPva3B4zgLW/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 bg-gray-800 text-white rounded-lg border border-gray-600 hover:bg-gray-700 hover:border-gray-500 transition-all duration-300"
+              className="px-6 py-3 bg-gray-800 text-white rounded-lg border	border-gray-600 hover:bg-gray-700 hover:border-gray-500 transition-all duration-300"
             >
               View My 1-Page Resume →
             </a>
@@ -258,7 +249,6 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
       </div>
 
       {/* Project Tile */}
-      {/* Use anchor for desktop, but intercept and stop propagation on mobile */}
       <a
         href={project.link}
         onClick={handleClick}
@@ -267,13 +257,13 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
           group
           relative
           bg-background-light
-          border border-neon-cyan/20
+          border	border-neon-cyan/20
           rounded-md
           overflow-hidden
           w-full
           h-64           /* mobile-only: increased height */
           md:h-[180px]   /* desktop: original 180px */
-          transition-all duration-500
+          transition-all	duration-500
           hover:cursor-pointer
         `}
       >
@@ -294,7 +284,7 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
 
         {isMobileDevice ? (
           <>
-            {/* Title + Role flying animation */}
+            {/* Title flies up on open */}
             <div
               className={`
                 absolute inset-0
@@ -306,9 +296,6 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
               <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
                 {project.title}
               </h3>
-              <p className="text-xs md:text-sm text-gray-300 mt-2">
-                {project.description}
-              </p>
             </div>
 
             {/* Overlay with role + skills, centered */}
@@ -327,7 +314,7 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
                 {project.techStack.map((tech) => (
                   <span
                     key={tech}
-                    className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
+                    className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border	border-neon-cyan/30 mx-1 my-1"
                   >
                     {tech}
                   </span>
@@ -337,18 +324,13 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
           </>
         ) : (
           <>
-            {/* Desktop: Title & Subtitle wrapper (slides up on hover) */}
+            {/* Desktop: Title flies up on hover */}
             <div
               className="
                 absolute
                 inset-0
-                flex
-                flex-col
-                items-center
-                justify-center
-                text-center
-                p-4 md:p-6
-                z-10
+                flex flex-col items-center justify-center text-center
+                p-4 md:p-6 z-10
                 transition-all duration-500 ease-in-out
                 group-hover:translate-y-[-100%]
                 md:group-hover:translate-y-[-160%]
@@ -366,17 +348,10 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
             {/* Desktop: Overlay with description + all skills */}
             <div
               className="
-                absolute
-                inset-0
-                flex
-                flex-col
-                justify-end
-                items-center
-                text-center
-                p-4 md:p-6 pb-6
-                z-10
-                opacity-0
-                group-hover:opacity-100
+                absolute inset-0
+                flex flex-col justify-end items-center text-center
+                p-4 md:p-6 pb-6 z-10
+                opacity-0 group-hover:opacity-100
                 transition-all duration-500
               "
             >
