@@ -16,7 +16,7 @@ const HeroSection = () => {
   const [displayedWord, setDisplayedWord] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Track if the user is on a device without hover (i.e., touch/mobile)
+  // Track if the user is on a device without hover (i.e. mobile/touch)
   const [isMobileDevice, setIsMobileDevice] = useState(false);
 
   useEffect(() => {
@@ -228,7 +228,7 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
   const [isOpen, setIsOpen] = useState(false);
   const cardRef = useRef(null);
 
-  // Toggle overlay on mobile tap – prevent navigation when tapping the anchor
+  // Toggle overlay on mobile tap – prevent navigation and stop propagation
   const handleClick = (e) => {
     if (isMobileDevice) {
       e.preventDefault();
@@ -258,7 +258,7 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
       </div>
 
       {/* Project Tile */}
-      {/* Use anchor for desktop, but intercept clicks on mobile */}
+      {/* Use anchor for desktop, but intercept and stop propagation on mobile */}
       <a
         href={project.link}
         onClick={handleClick}
