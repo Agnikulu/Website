@@ -2,4 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── only-hover utility ── */
+/* Only shows contents when device has hover: hover and pointer: fine */
+/* Hides on devices with hover: none or pointer: coarse */
+
+@layer utilities {
+  @media (hover: hover) and (pointer: fine) {
+    .only-hover {
+      display: flex !important;
+    }
+  }
+  @media (hover: none), (pointer: coarse) {
+    .only-hover {
+      display: none !important;
+    }
+  }
+}
+
+
   

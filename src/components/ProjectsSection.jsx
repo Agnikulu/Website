@@ -1,6 +1,11 @@
+// src/components/ProjectsSection.jsx
+
 import React, { useState } from 'react';
 
-// Update with personal experiences only
+/*
+  Update with personal experiences only.
+  This is the array of featured projects.
+*/
 const projectData = [
   {
     id: 1,
@@ -54,6 +59,9 @@ const projectData = [
   },
 ];
 
+/*
+  ProjectsSection: renders filter buttons + grid of ProjectCard components.
+*/
 const ProjectsSection = () => {
   const [filter, setFilter] = useState('All');
   const categories = ['All', ...new Set(projectData.map(project => project.category))];
@@ -73,6 +81,7 @@ const ProjectsSection = () => {
         </p>
       </div>
 
+      {/* Category Filter Buttons */}
       <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
         {categories.map(category => (
           <button
@@ -89,12 +98,14 @@ const ProjectsSection = () => {
         ))}
       </div>
 
+      {/* Grid of ProjectCard */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
         {filteredProjects.map(project => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
 
+      {/* “View All Experiences” Button */}
       <div className="text-center mt-12">
         <button className="group relative px-6 py-3 bg-background-light border border-neon-cyan rounded-sm overflow-hidden hover:shadow-neon-glow transition duration-300">
           <span className="relative z-10 text-neon-cyan group-hover:text-background transition duration-300">
@@ -107,13 +118,21 @@ const ProjectsSection = () => {
   );
 };
 
+
+/*
+  ProjectCard: represents a single project tile.
+  - Always shows up to the first three tech badges.
+  - Renders any “extra” badges + “Learn More” inside a .only-hover container,
+    which is display: none on touch/devices without hover.
+*/
 const ProjectCard = ({ project }) => {
-  // Pick out the “first three” badges, and lump the rest into a separate array
+  // Split techStack into “first three” always-visible, and the rest (hover-only).
   const alwaysVisible = project.techStack.slice(0, 3);
   const onHoverOnly = project.techStack.slice(3);
 
   return (
     <article className="group relative bg-background-light border border-neon-cyan/20 rounded-md overflow-hidden aspect-[3/2] transform transition-all duration-500">
+      {/* Background image + dark overlay */}
       <div className="absolute inset-0 z-0">
         <img
           src={project.image}
@@ -123,6 +142,7 @@ const ProjectCard = ({ project }) => {
         <div className="absolute inset-0 bg-black bg-opacity-50" />
       </div>
 
+      {/* Content overlay */}
       <div className="absolute inset-0 p-4 md:p-6 flex flex-col justify-end z-10">
         <span className="inline-block px-2 md:px-3 py-1 bg-neon-purple/80 text-white text-[10px] md:text-xs rounded-full mb-2 md:mb-3 backdrop-blur-sm">
           {project.category}
@@ -133,9 +153,9 @@ const ProjectCard = ({ project }) => {
         </h3>
         <p className="text-gray-300 text-sm md:text-base">{project.description}</p>
 
-        {/* ALWAYS‐VISIBLE TECH BADGES (up to 3) */}
+        {/* ── ALWAYS‐VISIBLE TECH BADGES (up to 3) ── */}
         <div className="flex flex-wrap gap-1 md:gap-2 mt-2 mb-3">
-          {alwaysVisible.map(tech => (
+          {alwaysVisible.map((tech) => (
             <span
               key={tech}
               className="px-1 md:px-2 py-0.5 md:py-1 bg-background/50 text-neon-cyan text-[8px] md:text-xs rounded backdrop-blur-sm border border-neon-cyan/30"
@@ -145,12 +165,13 @@ const ProjectCard = ({ project }) => {
           ))}
         </div>
 
-        {/* HOVER‐ONLY SECTION (md+): rest of badges + “Learn More” */}
+        {/* ── HOVER‐ONLY SECTION ── */}
+        {/* Wrapped in “only-hover” so that on touch‐only devices it’s never displayed */}
         {onHoverOnly.length > 0 && (
-          <div className="hidden md:flex md:flex-col md:gap-2">
-            {/* Tech badges hidden by default; appear only on group‐hover */}
+          <div className="only-hover flex flex-col gap-2">
+            {/* Extra badges, hidden until hover */}
             <div className="flex flex-wrap gap-1 md:gap-2 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-              {onHoverOnly.map(tech => (
+              {onHoverOnly.map((tech) => (
                 <span
                   key={tech}
                   className="px-1 md:px-2 py-0.5 md:py-1 bg-background/50 text-neon-cyan text-[8px] md:text-xs rounded backdrop-blur-sm border border-neon-cyan/30"
@@ -160,7 +181,7 @@ const ProjectCard = ({ project }) => {
               ))}
             </div>
 
-            {/* “Learn More” link hidden by default; appear on hover */}
+            {/* “Learn More” link, also hidden until hover */}
             <div className="opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 mt-2">
               <a
                 href={project.link}
@@ -189,6 +210,7 @@ const ProjectCard = ({ project }) => {
         )}
       </div>
 
+      {/* Decorative corner borders */}
       <div className="absolute top-0 right-0 border-t-2 border-r-2 border-neon-cyan w-6 h-6 md:w-8 md:h-8 opacity-70" />
       <div className="absolute bottom-0 left-0 border-b-2 border-l-2 border-neon-cyan w-6 h-6 md:w-8 md:h-8 opacity-70" />
     </article>
