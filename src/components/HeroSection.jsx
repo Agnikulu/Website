@@ -52,8 +52,12 @@ const HeroSection = () => {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
     const mobileUaRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
     const isUaMobile = mobileUaRegex.test(ua);
+
     const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+
+    // Treat as mobile if UA says mobile OR (pointer is coarse AND UA says mobile)
     const mobileDetected = isUaMobile || (isCoarsePointer && isUaMobile);
+
     setIsMobileDevice(mobileDetected);
   }, []);
   // -------------------------------------------------------------
@@ -226,7 +230,7 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
   const [isOpen, setIsOpen] = useState(false);
   const cardRef = useRef(null);
 
-  // Toggle overlay on mobile tap
+  // Toggle overlay on mobile tap – prevent navigation when tapping the anchor
   const handleClick = (e) => {
     if (isMobileDevice) {
       e.preventDefault();
@@ -245,79 +249,6 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
     return () => document.removeEventListener("click", handleOutsideClick);
   }, [isOpen]);
 
-  // Render <div> wrapper on mobile (no href), <a> on desktop
-  if (isMobileDevice) {
-    return (
-      <div className="relative flex flex-col md:flex-row items-start justify-between gap-4">
-        {/* Date Column */}
-        <div className="text-gray-400 text-xs font-medium text-right w-full md:w-[100px]">
-          {project.date}
-        </div>
-
-        {/* Mobile wrapper: click toggles isOpen */}
-        <div
-          ref={cardRef}
-          onClick={handleClick}
-          className="
-            relative
-            bg-background-light
-            border border-neon-cyan/20
-            rounded-md
-            overflow-hidden
-            w-full
-            h-64           /* mobile-only: increased height */
-            transition-all duration-500
-            cursor-pointer
-          "
-        >
-          {/* Background Image + Dark Overlay */}
-          <div className="absolute inset-0 z-0">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-700 ease-in-out"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-75" />
-          </div>
-
-          {/* Category Tag */}
-          <div className="absolute top-5 right-4 bg-neon-purple/80 text-white text-xs px-3 py-1 rounded-full z-10 backdrop-blur-sm">
-            {project.category}
-          </div>
-
-          {/* Closed state: title centered */}
-          {!isOpen && (
-            <div className="absolute inset-0 flex items-center justify-center text-center p-4 z-10">
-              <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
-                {project.title}
-              </h3>
-            </div>
-          )}
-
-          {/* Open state: subtitle + skills centered */}
-          {isOpen && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 z-10">
-              <p className="text-white text-sm md:text-base font-semibold mb-3">
-                {project.subtitle}
-              </p>
-              <div className="flex flex-wrap justify-center px-2">
-                {project.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    );
-  }
-
-  // Desktop version: hover reveals overlay, link wraps entire card
   return (
     <div className="relative flex flex-col md:flex-row items-start justify-between gap-4">
       {/* Date Column */}
@@ -325,11 +256,12 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
         {project.date}
       </div>
 
+      {/* Project Tile */}
       <a
         href={project.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="
+        onClick={handleClick}
+        ref={cardRef}
+        className={`
           group
           relative
           bg-background-light
@@ -341,7 +273,7 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
           md:h-[180px]   /* desktop: original 180px */
           transition-all duration-500
           hover:cursor-pointer
-        "
+        `}
       >
         {/* Background Image + Dark Overlay */}
         <div className="absolute inset-0 z-0">
@@ -358,63 +290,100 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
           {project.category}
         </div>
 
-        {/* Title & Subtitle wrapper (slides up on hover) */}
-        <div
-          className="
-            absolute
-            inset-0
-            flex
-            flex-col
-            items-center
-            justify-center
-            text-center
-            p-4 md:p-6
-            z-10
-            transition-all duration-500 ease-in-out
-            group-hover:translate-y-[-100%]
-            md:group-hover:translate-y-[-160%]
-            md:group-hover:translate-x-[-20%]
-          "
-        >
-          <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
-            {project.title}
-          </h3>
-          <p className="text-xs md:text-sm text-gray-300 mt-2">
-            {project.subtitle}
-          </p>
-        </div>
+        {isMobileDevice ? (
+          <>
+            {/* Closed state: center title & subtitle */}
+            {!isOpen && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 z-10">
+                <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
+                  {project.title}
+                </h3>
+                <p className="text-xs md:text-sm text-gray-300 mt-2">
+                  {project.subtitle}
+                </p>
+              </div>
+            )}
 
-        {/* Overlay with description + all skills */}
-        <div
-          className="
-            absolute
-            inset-0
-            flex
-            flex-col
-            justify-end
-            items-center
-            text-center
-            p-4 md:p-6 pb-6
-            z-10
-            opacity-0
-            group-hover:opacity-100
-            transition-all duration-500
-          "
-        >
-          <p className="text-gray-300 mb-4 text-xs md:text-sm font-minimalist leading-relaxed">
-            {project.description}
-          </p>
-          <div className="w-full text-center">
-            {project.techStack.map((tech) => (
-              <span
-                key={tech}
-                className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
+            {/* Open state: center subtitle (position) + skills */}
+            {isOpen && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 z-10">
+                <p className="text-white text-sm md:text-base font-semibold mb-3">
+                  {project.subtitle}
+                </p>
+                <div className="flex flex-wrap justify-center px-2">
+                  {project.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            {/* Desktop: Title & Subtitle wrapper (slides up on hover) */}
+            <div
+              className="
+                absolute
+                inset-0
+                flex
+                flex-col
+                items-center
+                justify-center
+                text-center
+                p-4 md:p-6
+                z-10
+                transition-all duration-500 ease-in-out
+                group-hover:translate-y-[-100%]
+                md:group-hover:translate-y-[-160%]
+                md:group-hover:translate-x-[-20%]
+              "
+            >
+              <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
+                {project.title}
+              </h3>
+              <p className="text-xs md:text-sm text-gray-300 mt-2">
+                {project.subtitle}
+              </p>
+            </div>
+
+            {/* Desktop: Overlay with description + all skills */}
+            <div
+              className="
+                absolute
+                inset-0
+                flex
+                flex-col
+                justify-end
+                items-center
+                text-center
+                p-4 md:p-6 pb-6
+                z-10
+                opacity-0
+                group-hover:opacity-100
+                transition-all duration-500
+              "
+            >
+              <p className="text-gray-300 mb-4 text-xs md:text-sm font-minimalist leading-relaxed">
+                {project.description}
+              </p>
+              <div className="w-full text-center">
+                {project.techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
       </a>
     </div>
   );
