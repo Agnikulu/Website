@@ -1,6 +1,6 @@
 // src/components/HeroSection.jsx
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import profilePic from '../../pic.png';
 
 // “projectData” drives the Experience timeline. Each entry must include:
@@ -229,6 +229,7 @@ const HeroSection = () => {
 
 const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const cardRef = useRef(null);
 
   // Toggle overlay on mobile tap
   const handleClick = (e) => {
@@ -237,6 +238,17 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
       setIsOpen((prev) => !prev);
     }
   };
+
+  // Collapse overlay when clicking anywhere outside
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (isOpen && cardRef.current && !cardRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("click", handleOutsideClick);
+    return () => document.removeEventListener("click", handleOutsideClick);
+  }, [isOpen]);
 
   return (
     <div className="relative flex flex-col md:flex-row items-start justify-between gap-4">
@@ -251,6 +263,7 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
         onClick={handleClick}
         target="_blank"
         rel="noopener noreferrer"
+        ref={cardRef}
         className={`
           group
           relative
@@ -280,7 +293,7 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
           {project.category}
         </div>
 
-        {/* Title & Subtitle wrapper: */}
+        {/* Title & Subtitle wrapper: vertically centered on mobile */}
         <div
           className={`
             absolute
@@ -344,7 +357,7 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
               ))}
             </div>
 
-            {/* (Removed “Learn More” link entirely) */}
+            {/* (Learn More button removed) */}
           </div>
         ) : (
           <div
@@ -380,7 +393,7 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
               ))}
             </div>
 
-            {/* (Removed “Learn More” link entirely) */}
+            {/* (Learn More button removed) */}
           </div>
         )}
       </a>
