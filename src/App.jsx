@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
-import ProjectsSection from './components/ProjectsSection';
 import Footer from './components/Footer';
 import Cursor from './components/Cursor';
 
@@ -37,7 +36,6 @@ export const App = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <ProjectsSection />
       </main>
       {/* <Footer /> */}
     </div>
