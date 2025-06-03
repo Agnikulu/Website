@@ -194,129 +194,11 @@ const HeroSection = () => {
         <h2 className="text-xl text-gray-300 font-medium mb-4">Experience</h2>
         <div className="space-y-6">
           {projectData.map((project) => (
-            <div
+            <MobileFriendlyExperienceCard
               key={project.id}
-              className="relative flex flex-col md:flex-row items-start justify-between gap-4"
-            >
-              {/* Date Column */}
-              <div className="text-gray-400 text-xs font-medium text-right w-full md:w-[100px]">
-                {project.date}
-              </div>
-
-              {/* Project Tile */}
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  group
-                  relative
-                  bg-background-light
-                  border border-neon-cyan/20
-                  rounded-md
-                  overflow-hidden
-                  w-full
-                  h-64           /* mobile-only: increase height */
-                  md:h-[180px]   /* desktop: keep original 180px */
-                  transition-all duration-500
-                  hover:cursor-pointer
-                "
-              >
-                {/* Background Image + Dark Overlay */}
-                <div className="absolute inset-0 z-0">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-75"></div>
-                </div>
-
-                {/* Category Tag */}
-                <div className="absolute top-5 right-4 bg-neon-purple/80 text-white text-xs px-3 py-1 rounded-full z-10 backdrop-blur-sm">
-                  {project.category}
-                </div>
-
-                {/* Title & Subtitle wrapper:
-                    Moves up/left on group-hover (desktop) */}
-                <div
-                  className="
-                    absolute
-                    inset-0
-                    flex
-                    flex-col
-                    items-center
-                    justify-center
-                    text-center
-                    p-4 md:p-6
-                    z-10
-                    transition-all duration-500 ease-in-out
-                    group-hover:translate-y-[-100%]
-                    md:group-hover:translate-y-[-160%]
-                    md:group-hover:translate-x-[-20%]
-                  "
-                >
-                  <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
-                    {project.title}
-                  </h3>
-                  <p className="text-xs md:text-sm text-gray-300 mt-2">
-                    {project.subtitle}
-                  </p>
-                </div>
-
-                {/* ─── MOBILE: Show only first 3 skills immediately ─── */}
-                {isMobileDevice && (
-                  <div className="absolute bottom-2 inset-x-0 flex justify-center flex-wrap px-2">
-                    {project.techStack.slice(0, 3).map((tech) => (
-                      <span
-                        key={tech}
-                        className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {/* ─── DESKTOP: Hover‐overlay with full description + all skills ─── */}
-                {!isMobileDevice && (
-                  <div
-                    className="
-                      absolute
-                      inset-0
-                      flex
-                      flex-col
-                      justify-end
-                      items-center
-                      text-center
-                      p-4 md:p-6 pb-6
-                      z-10
-                      opacity-0
-                      group-hover:opacity-100
-                      transition-all duration-500
-                    "
-                  >
-                    {/* Description Text */}
-                    <p className="text-gray-300 mb-4 text-xs md:text-sm font-minimalist leading-relaxed">
-                      {project.description}
-                    </p>
-
-                    {/* Skills: all techStack badges */}
-                    <div className="w-full text-center">
-                      {project.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                {/* ────────────────────────────────────────────────────── */}
-              </a>
-            </div>
+              project={project}
+              isMobileDevice={isMobileDevice}
+            />
           ))}
         </div>
 
@@ -342,6 +224,167 @@ const HeroSection = () => {
         </div>
       </div>
     </section>
+  );
+};
+
+const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Toggle overlay on mobile tap
+  const handleClick = (e) => {
+    if (isMobileDevice) {
+      e.preventDefault();
+      setIsOpen((prev) => !prev);
+    }
+  };
+
+  return (
+    <div className="relative flex flex-col md:flex-row items-start justify-between gap-4">
+      {/* Date Column */}
+      <div className="text-gray-400 text-xs font-medium text-right w-full md:w-[100px]">
+        {project.date}
+      </div>
+
+      {/* Project Tile */}
+      <a
+        href={project.link}
+        onClick={handleClick}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`
+          group
+          relative
+          bg-background-light
+          border border-neon-cyan/20
+          rounded-md
+          overflow-hidden
+          w-full
+          h-64           /* mobile-only: increased height */
+          md:h-[180px]   /* desktop: original 180px */
+          transition-all duration-500
+          hover:cursor-pointer
+        `}
+      >
+        {/* Background Image + Dark Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-75" />
+        </div>
+
+        {/* Category Tag */}
+        <div className="absolute top-5 right-4 bg-neon-purple/80 text-white text-xs px-3 py-1 rounded-full z-10 backdrop-blur-sm">
+          {project.category}
+        </div>
+
+        {/* Title & Subtitle wrapper: */}
+        <div
+          className={`
+            absolute
+            inset-0
+            flex
+            flex-col
+            items-center
+            justify-center
+            text-center
+            p-4 md:p-6
+            z-10
+            transition-all duration-500 ease-in-out
+            ${
+              isMobileDevice
+                ? isOpen
+                  ? "translate-y-[-100%]"
+                  : "translate-y-0"
+                : "group-hover:translate-y-[-100%] md:group-hover:translate-y-[-160%] md:group-hover:translate-x-[-20%]"
+            }
+          `}
+        >
+          <h3 className="text-lg md:text-2xl font-extrabold text-white font-cool uppercase tracking-wide">
+            {project.title}
+          </h3>
+          <p className="text-xs md:text-sm text-gray-300 mt-2">
+            {project.subtitle}
+          </p>
+        </div>
+
+        {/* Overlay with description + all skills */}
+        {isMobileDevice ? (
+          <div
+            className={`
+              absolute
+              inset-0
+              flex
+              flex-col
+              justify-end
+              items-center
+              text-center
+              p-4 md:p-6 pb-6
+              z-10
+              transition-all duration-500
+              ${isOpen ? "opacity-100" : "opacity-0"}
+            `}
+          >
+            {/* Description Text */}
+            <p className="text-gray-300 mb-4 text-xs md:text-sm font-minimalist leading-relaxed">
+              {project.description}
+            </p>
+
+            {/* Skills: all techStack badges */}
+            <div className="w-full text-center">
+              {project.techStack.map((tech) => (
+                <span
+                  key={tech}
+                  className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            {/* (Removed “Learn More” link entirely) */}
+          </div>
+        ) : (
+          <div
+            className="
+              absolute
+              inset-0
+              flex
+              flex-col
+              justify-end
+              items-center
+              text-center
+              p-4 md:p-6 pb-6
+              z-10
+              opacity-0
+              group-hover:opacity-100
+              transition-all duration-500
+            "
+          >
+            {/* Description Text */}
+            <p className="text-gray-300 mb-4 text-xs md:text-sm font-minimalist leading-relaxed">
+              {project.description}
+            </p>
+
+            {/* Skills: all techStack badges */}
+            <div className="w-full text-center">
+              {project.techStack.map((tech) => (
+                <span
+                  key={tech}
+                  className="inline-block px-2 py-1 bg-background/50 text-neon-cyan text-xs rounded border border-neon-cyan/30 mx-1 my-1"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            {/* (Removed “Learn More” link entirely) */}
+          </div>
+        )}
+      </a>
+    </div>
   );
 };
 

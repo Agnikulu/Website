@@ -208,32 +208,7 @@ const ProjectCard = ({ project }) => {
                 </span>
               ))}
             </div>
-
-            {/* “Learn More” link (also hidden until hover) */}
-            <div className="opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 mt-2">
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 md:gap-2 text-neon-cyan text-[10px] md:text-sm hover:text-white transition-colors"
-              >
-                <span>Learn More</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="md:w-4 md:h-4"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
+            {/* (Removed “Learn More” link entirely) */}
           </div>
         )}
       </div>
