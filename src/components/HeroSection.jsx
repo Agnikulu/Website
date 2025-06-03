@@ -294,7 +294,7 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
 
         {isMobileDevice ? (
           <>
-            {/* Title + Subtitle flying animation */}
+            {/* Title + Role flying animation */}
             <div
               className={`
                 absolute inset-0
@@ -307,11 +307,11 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
                 {project.title}
               </h3>
               <p className="text-xs md:text-sm text-gray-300 mt-2">
-                {project.subtitle}
+                {project.description}
               </p>
             </div>
 
-            {/* Overlay with subtitle (position) + skills, centered */}
+            {/* Overlay with role + skills, centered */}
             <div
               className={`
                 absolute inset-0
@@ -321,7 +321,7 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
               `}
             >
               <p className="text-white text-sm md:text-base font-semibold mb-3">
-                {project.subtitle}
+                {project.description}
               </p>
               <div className="flex flex-wrap justify-center px-2">
                 {project.techStack.map((tech) => (
@@ -359,7 +359,7 @@ const MobileFriendlyExperienceCard = ({ project, isMobileDevice }) => {
                 {project.title}
               </h3>
               <p className="text-xs md:text-sm text-gray-300 mt-2">
-                {project.subtitle}
+                {project.description}
               </p>
             </div>
 
