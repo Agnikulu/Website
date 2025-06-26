@@ -20,7 +20,7 @@ const exp = [
   },
   {
     title: "Research Intern",
-    cardImage: "assets/images/experience-page/stanford.jpg",
+    cardImage: "assets/images/experience-page/stanford.png",
     place: "Stanford Wall Lab",
     time: "(June, 2023 - Dec, 2024)",
     desp: "<li>Developed a facial expression classifier with 14× fewer parameters and only 1.12% lower accuracy than state-of-the-art models; deployed it on the lab’s ”GuessWhat?” app (10K+ downloads) for real-time detection and treatment of autism-spectrum disorder in young children</li>",
