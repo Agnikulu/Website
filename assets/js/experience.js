@@ -6,24 +6,24 @@ const experiencecards = document.querySelector(".experience-cards");
 const exp = [
   {
     title: "Software Development Intern",
-    cardImage: "assets/images/experience-page/flipkart.jpg",
-    place: "Flipkart",
-    time: "(May, 2020 - present)",
-    desp: "<li>Worked to migrate Flipkart lite’s product page to AMP pages so that they load up instantly.</li> <li>Made changes in the current progressive web app of Flipkart to react to different actions performed on AMP page.</li> <li>Created a node module called “fk-amp” which abstracts all the files and middlewares and can be easily imported and used from express server.</li>",
+    cardImage: "assets/images/experience-page/aquila.png",
+    place: "Aquila Clouds",
+    time: "(May, 2025 - Present)",
+    desp: "<li>Developing a RAG-enhanced text-to-SQL agent using Claude-MCP, Pinecone vector DB, and PostgreSQL via FastAPI to automate detection and cleanup of underutilized cloud resources through Azure Resource Graph.</li>",
   },
   {
-    title: "Student Developer",
-    cardImage: "assets/images/experience-page/gsoc.png",
-    place: "Google Summer Of Code",
-    time: "(Mar - Aug, 2019)",
-    desp: "<li>Worked with MOZILLA as a part of Google Summer Of Code.</li><li>Worked on Extension Activity Monitor which is a privileged extension for Firefox that uses the activityLog API (privileged API) to monitor the activities of the other installed extensions.</li><li>The activityLog API listens for logs from other installed extensions.</li>",
+    title: "Research Assistant",
+    cardImage: "assets/images/experience-page/ucsf.png",
+    place: "UCSF Tech Lab",
+    time: "(May 2019 - Present)",
+    desp: "<li>Built self-supervised foundation models from scratch using PyTorch that achieved less than 6 BPM and 300 steps average error per hour on thousands of hours of Fitbit data and trained classifiers using contrastive learning to diagnose drug usage and craving with >70% sensitivity.</li>",
   },
   {
     title: "Research Intern",
     cardImage: "assets/images/experience-page/IIT_Bombay.jpg",
-    place: "IIT, Bombay",
-    time: "(Dec, 19 - Jan, 20)",
-    desp: "<li>Worked on the project “LTI (Learning Tools Interoperability) 2.0 standards Implementation for ekShiksha.</li><li>Designed a software that would help faculty to create a quiz using the questions from the database based on his/her choice of topics and he should be provided with various facilities and options to create a quiz of his choice.</li>",
+    place: "Stanford Wall Lab",
+    time: "(June, 2023 - Dec, 2024)",
+    desp: "<li>Developed a facial expression classifier with 14× fewer parameters and only 1.12% lower accuracy than state-of-the-art models; deployed it on the lab’s ”GuessWhat?” app (10K+ downloads) for real-time detection and treatment of autism-spectrum disorder in young children</li>",
   },
 ];
 
