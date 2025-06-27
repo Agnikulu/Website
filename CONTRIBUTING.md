@@ -1,192 +1,81 @@
-# Contribution Guidelines [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/smaranjitghose/awesome-portfolio-websites/issues):
+# 🚀 Contributing to the MasterPortfolio Project
 
+Thank you for considering contributing to the MasterPortfolio project! Your help is greatly appreciated. 😊
 
-<p align="center"><img src="./readme_assets/Contribute.png" width=600></p>
+## 🤝 How to Contribute
 
-We want to make contributing to this project as easy and as transparent as possible, whether it's:<br>
+Here are some fun and precise steps to get you started:
 
-- Reporting a bug :bug:
+1. **Fork the Repository** 🍴
 
-- Submitting a fix :mag_right:
+   - Click the "Fork" button on the top right of the [MasterPortfolio repository](https://github.com/ashutosh1919/masterPortfolio) page on GitHub. This will create a copy of the project in your own GitHub account.
 
-- Proposing new features :bulb:
+2. **Clone Your Fork** 🧙‍♂️
 
-If you wish to contribute to this project, please raise an issue and wait for the project maintainers to approve it or give feedback before making a change.
+   - In your terminal, run the following command to clone your fork to your local machine:
+     ```
+     git clone https://github.com/YourUsername/masterPortfolio.git
+     ```
 
-This documentation contains a set of guidelines to help you during the contribution process. We are happy to welcome all the contributions from anyone willing to improve/add new scripts to this project. 
+3. **Switch to the Project Directory** 📁
 
-## Code of Conduct
+   - Move into the project directory using:
+     ```
+     cd masterPortfolio
+     ```
 
-Make sure to read it here: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+4. **Move to Gatsby** 🚀
 
+   - If you're working on this task, please help us migrate the project to Gatsby. Make the necessary changes and test everything to ensure it works smoothly.
 
-## Preliminaries
+5. **Add Podcast and Video Sections** 🎙️📹
 
-- Download and install the latest stable version of [Git](https://git-scm.com/downloads) 📥 for version control
-- Create a [Github](https://github.com/join) Account 📇
-- Download and install latest stable version of [VS Code](https://code.visualstudio.com/download)
+   - We'd love to have sections for podcasts and videos on the portfolio. Create these sections and make sure they look fantastic.
 
-##   A. Setting up the Project
+6. **Add Tests for Automation** 🧪
 
-**1.**  Fork [this](https://github.com/smaranjitghose/awesome-portfolio-websites) repository.
+   - To ensure code quality, add tests where appropriate. Use test frameworks like Jest or Cypress, and make sure the tests pass.
 
-<p align="center"><img src="readme_assets\Fork_Repo.gif" width="500" height="200" /></p>
+7. **Set Up Travis Workflow** 🤖
 
+   - Implement a Travis CI workflow to automate builds and testing. This will help ensure that changes don't break the project.
 
-**2.**  Clone your forked copy of the project.
+8. **Create a Branch** 🌿
 
-```
-git clone --depth 1 https://github.com/<your_user_name>/awesome-portfolio-websites.git
-```
-<p align="center"><img width=35% src="readme_assets\clone_repo.gif" width="500" height="200" /></p>
+   - Create a new branch for your changes with a descriptive name. For example:
+     ```
+     git checkout -b gatsby-migration
+     ```
 
-**3.** Navigate to the project directory :file_folder: .
+9. **Make Your Changes** 💡
 
-```
-cd awesome-portfolio-websites
-```
+   - Implement your awesome changes and features.
 
-**4.** Add a reference to the original repository.
+10. **Commit Your Changes** 📝
 
-```
-git remote add upstream https://github.com/smaranjitghose/awesome-portfolio-websites.git 
-```
+    - Commit your changes with a descriptive message. For example:
+      ```
+      git commit -m "Added Gatsby migration and podcast section"
+      ```
 
-**5.** Check the remotes for this repository.
+11. **Push Your Changes** 🚢
 
-```
-git remote -v
-```
+    - Push your changes to your fork on GitHub:
+      ```
+      git push origin gatsby-migration
+      ```
 
-**6.** Always take a pull from the upstream repository to your master branch to keep it at par with the main project(updated repository).
+12. **Create a Pull Request** 🙌
 
-```
-git pull upstream master
-```
+    - Go to your fork on GitHub, and click the "New Pull Request" button. Follow the prompts, and submit your changes for review.
 
-- Comment on any existing [issue(s)](https://github.com/smaranjitghose/awesome-portfolio-websites/issues) raised by **project maintainers**. Otherwise raise a [new issue](https://github.com/smaranjitghose/awesome-portfolio-websites/issues/new).
+13. **Celebrate** 🎉
+    - You've contributed to the MasterPortfolio project! Thanks for your hard work and dedication.
 
-> ### Guidelines for raising a new issue:
->
-> - Each issue should have an appropriate and short title like "Bug in Experience Page"
->
-> - Whenever a participant raises an issue, by default it would be assigned to that participant due to obvious reasons. 
->
-> - Be specific about your intended changes/suggestions
->
-> - Refrain from using phrases like "Hi, I am ..", "Please assign me this issue", "Thank You..", etc. We are only interested in technical parts
->
-> - Attach a screenshot/clip if applicable
->
-> - Please be patient enough. The project maintainers/mentors would review it as per their schedule. Refrain from putting up comments like "Please check this" ,"Please review this PR" etc.
->
->-  An issue would be assigned to a participant for a minimum of 1 day and a maximum of 3 days. If the tenure of a particular participant is not over please do not spam the issue thread by writing, " I am interested" etc. You are welcome to do so if the participant has not met the requirements with around 12 hours remaining for their deadline.
->
-> - Feel free to suggest your opinions on the already raised issues.
->
-> - All participants are welcomed to suggest new features/bug fixes/improvements and raise new issues for those. However, the assignment would be done once approved by either of the project maintainers or the mentors.
->
-> - Do not blindly comment on issues raised by other participant(s). Unless a minimum of 48 hours has passed since their assignment, the issue would not be re-assigned(excluding certain cases). The issue raised by a participant will always to be assigned to him/her by default. Do not spam "Interested", "Please assign me" in others issues.
->
-> - Always keep a note of the deadline.
+## 📌 Issues
 
-##  B. Contributing to the Project
+If you encounter any issues or have ideas for improvements, please open an [issue](https://github.com/ashutosh1919/masterPortfolio/issues) and let us know.
 
-- Once the project maintainer(s)/mentor(s) have reviewed the issue/assigned you the issue. Start working on the changes.
+## 🙏 Thank You
 
-**1.** Create a new branch (DO NOT name it MAIN or MASTER or anything random).
-
-```
-git checkout -b <your_branch_name>
-```
-
-**2.** Perfom your desired changes to the code base.
-- Make sure that you do not change any code unrelated to the task that you have been assigned
-
-- Ensure that your changes apply to all screensizes
-
-- Comment any new code addition(s)
-
-- Do not mess up the directory structure
-
-- Preview your changes and test them properly before proceding ahead
-
-<p align="center"><img width=35% src="https://media2.giphy.com/media/L1R1tvI9svkIWwpVYr/giphy.gif?cid=ecf05e47pzi2rpig0vc8pjusra8hiai1b91zgiywvbubu9vu&rid=giphy.gif"></p>
-
-- Make a small clip or take screenshots before and after making changes.
-
-
-**3.** Track your changes:heavy_check_mark: 
-
-```
-git add . 
-```
-
-**4.** Commit your changes .
-
-```
-git commit -m "Relevant message"  (usually title of the pull request)
-```
-- **Make sure to condense your changes into a single commit**.
-
-**5.** Push the committed changes in your feature branch to your remote repo.
-
-```
-git push -u origin <your_branch_name>
-```
-
-**6.** To create a pull request, click on `compare and pull requests`. Please ensure you compare your feature branch to the desired branch of the repo you are suppose to make a PR to.
-
-<img src="./readme_assets/ComparePR.png" width=600>
-
-**7.** Then add an appropriate title and description to your pull request that explains your changes and efforts done.
-
-
-**8.** Click on `Create Pull Request`.
-
-<img src="./readme_assets/CreatePR.png" width=600>
-
-> ### Guidelines for raising a pull request:
->
-> - Each pull request should have an appropriate and short title like "Fixed Bug in Experience Page"
->
-> - In case of multiple commits, please perform a rebase and make a squash commit before giving the pull request.
->
-> - Pull Requests without a description would often not be reviewed. Make sure you describe your intended changes in the description section of the pull request. (Use bullet points and phrases)
->
-> - Make sure to refer the respective issue in the respective PR using phrases like `Resolves #issue_number` or `Closes #issue_number`.  Here's an example to raise a PR:
-```
- Fixes #640
-
-# Work Done:
-
-- Fixed Responsiveness bug in the MOOC Section of the Education Page
-- Made the Favicon more optimized
-- ...
-- ...
-- ...
-
-# Relevant Screenshots/Gifs
-```
-
-> - Refrain from using phrases like "Hi, I am ..", "Please merge me this PR", "Thank You..", etc. We are only interested in technical parts.
->
-> - Attach a screenshot/clip of the change(s).
->
-> - Please be patient enough. The project maintainers/mentors would review it as per their schedule. Please do not start putting comments like "Please check this" etc.
->
-> - Not every PR would be merged directly. In majority of the scenarios, we would be offering some additional suggestions which are to be incorporated in the same PR with a squash commit.
->
-> - Look out for possible merge conflicts. Please add comments required, this makes your code readable.
->
->- Make sensible variable names. For example, card1 is quite ambiguous but education_card implies what that variable is declared for.
->
-> - Although we support feedback from everyone in all phases of development, it is highly advised not to put any negative comments in other participant's pull requests.
->
-> - Always keep a note of the deadline.
-
-
-**9.** Voila :exclamation: You have made a PR to the awesome-developer-portfolio project :boom: . Sit back patiently and relax while the project maintainers review your PR. Please understand at times the time can vary from a few hours to a few days.
-
-<p align="center"><img src="https://media.giphy.com/media/5mCQOcUfywmyI/giphy.gif" width=35%></p>
-
+We appreciate your contribution and look forward to working together to make the MasterPortfolio project even better! 😄🚀
