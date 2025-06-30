@@ -14,14 +14,14 @@ export const skillsUnsorted: skillsInterface[] = [
     description:
       "General-purpose programming language for scripting, automation, and ML.",
     rating: 5,
-    icon: Icons.nodejs, // fallback icon
+    icon: Icons.python,
   },
   {
     name: "Java",
     description:
       "Object-oriented language for scalable backend and Android development.",
     rating: 5,
-    icon: Icons.nodejs, // fallback icon
+    icon: Icons.java,
   },
   {
     name: "C/C++",
@@ -101,7 +101,7 @@ export const skillsUnsorted: skillsInterface[] = [
     name: "PyTorch",
     description: "Deep learning framework for research and production.",
     rating: 5,
-    icon: Icons.nodejs, // fallback icon
+    icon: Icons.pytorch,
   },
   {
     name: "TensorFlow",

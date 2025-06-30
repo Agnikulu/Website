@@ -72,7 +72,7 @@ export default function Experience({ params }: ExperiencePageProps) {
           >
             <Image
               src={agnikImg}
-              alt={"naman"}
+              alt={"agnik"}
               width={42}
               height={42}
               className="rounded-full bg-background"

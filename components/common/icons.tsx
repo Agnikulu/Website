@@ -65,7 +65,10 @@ import {
   SiTailwindcss,
   SiTwitter,
   SiTypescript,
+  SiPython,
+  SiPytorch,
 } from "react-icons/si";
+import { DiJava } from "react-icons/di";
 
 export const Icons = {
   contact: Phone,
@@ -173,4 +176,7 @@ export const Icons = {
   paper: Scroll,
   aurora: Sparkles,
   synthwave: Music,
+  python: SiPython,
+  java: DiJava,
+  pytorch: SiPytorch,
 };
