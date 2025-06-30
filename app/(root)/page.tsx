@@ -18,8 +18,8 @@ import { ContactForm } from "@/components/forms/contact-form";
 import { ScrollDownButton } from "@/components/common/scroll-down-button";
 
 export const metadata: Metadata = {
-  title: `${pagesConfig.home.metadata.title} | Modern Next.js Developer Portfolio Template`,
-  description: `${pagesConfig.home.metadata.description} This open-source Next.js portfolio template is customizable to showcase your skills and projects.`,
+  title: `Agnik Banerjee | ${pagesConfig.home.metadata.title}`,
+  description: `${pagesConfig.home.metadata.description} Agnik Banerjee's Portfolio.`,
   alternates: {
     canonical: siteConfig.url,
   },
