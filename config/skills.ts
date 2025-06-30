@@ -107,7 +107,7 @@ export const skillsUnsorted: skillsInterface[] = [
     name: "TensorFlow",
     description: "End-to-end open source platform for machine learning.",
     rating: 4,
-    icon: Icons.tensorflow,
+    icon: Icons.nodejs, // fallback icon
   },
   {
     name: "Scikit-Learn",
