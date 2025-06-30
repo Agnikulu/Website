@@ -75,7 +75,7 @@ export const careerExperiences: CareerExperienceInterface[] = [
       "Deployed classifier on 'GuessWhat?' app (10K+ downloads) for real-time detection and treatment of autism-spectrum disorder in young children.",
       "Created federated learning ecosystems for future lab initiatives by leading a team of app developers and PhD candidates.",
     ],
-    skills: ["Python", "TensorFlow", "Java", "Android", "iOS"],
+    skills: ["Python", "TensorFlow", "Java"],
     companyUrl: "https://wall-lab.stanford.edu",
     logo: "/career/stanford.png",
   },
