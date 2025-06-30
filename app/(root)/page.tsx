@@ -67,12 +67,11 @@ export default function IndexPage() {
             delay={0.4}
             className="font-heading text-base sm:text-xl md:text-xl lg:text-2xl"
           >
-            Full Stack Developer
+            Software Engineer
           </AnimatedText>
           <div className="mt-4 max-w-[42rem] text-center">
             <p className="leading-normal text-muted-foreground text-sm sm:text-base">
-              Open-source Next.js portfolio template. Fork this on GitHub to
-              create your own developer portfolio.
+              Student at the University of Maryland studying Computer Science with minors in Data Science and Technology Entrepreneurship & Corporate Innovation. Passionate about building software and technology solutions, exploring AI’s potential in healthcare, and driving innovation in early-stage startups.
             </p>
           </div>
           <div className="flex flex-col mt-10 items-center justify-center sm:flex-row sm:space-x-4 gap-3">

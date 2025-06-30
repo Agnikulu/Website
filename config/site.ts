@@ -10,10 +10,8 @@ export const siteConfig = {
     github: "https://github.com/agnikulu",
   },
   ogImage: "https://agnikbanerjee.com/agnik-img.jpg",
-  iconIco:
-    "https://res.cloudinary.com/dbfvcn3f6/image/upload/v1692357384/assets/naman-favicon.ico",
-  logoIcon:
-    "https://res.cloudinary.com/dbfvcn3f6/image/upload/v1692357294/assets/naman-logo.png",
+  iconIco: "public/agnik.ico",
+  logoIcon: "public/agnik.png",
   keywords: [
     "Agnik Banerjee",
     "Full Stack Developer",

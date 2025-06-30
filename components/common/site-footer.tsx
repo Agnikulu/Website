@@ -11,8 +11,8 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
     <footer className={cn(className)}>
       <div className="container flex flex-col items-center justify-center gap-8 mt-10 py-10 md:h-24">
         <nav className="flex gap-6 mb-4">
-          <a href="#hero" className="text-sm font-medium hover:underline">
-            Hero
+          <a href="#about" className="text-sm font-medium hover:underline">
+            About Me
           </a>
           <a href="#timeline" className="text-sm font-medium hover:underline">
             Timeline
