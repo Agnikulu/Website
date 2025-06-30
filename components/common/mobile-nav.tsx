@@ -38,7 +38,7 @@ export function MobileNav({ items, children }: MobileNavProps) {
             <Link href="#about">About Me</Link>
           </a>
           <a className="flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline">
-            <Link href="#timeline">Timeline</Link>
+            <Link href="#Career">Career</Link>
           </a>
           <a className="flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline">
             <Link href="#skills">Skills</Link>

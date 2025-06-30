@@ -66,10 +66,10 @@ export function MainNav({ items, children }: MainNavProps) {
           About Me
         </a>
         <a
-          href="#timeline"
+          href="#Career"
           className="flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm text-foreground/60"
         >
-          Timeline
+          Career
         </a>
         <a
           href="#skills"

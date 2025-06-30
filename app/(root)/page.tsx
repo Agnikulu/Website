@@ -15,6 +15,7 @@ import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import agnikImg from "../../public/agnik-img.jpg";
 import { ContactForm } from "@/components/forms/contact-form";
+import { ScrollDownButton } from "@/components/common/scroll-down-button";
 
 export const metadata: Metadata = {
   title: `${pagesConfig.home.metadata.title} | Modern Next.js Developer Portfolio Template`,
@@ -102,12 +103,12 @@ export default function IndexPage() {
             </AnimatedText>
           </div>
           <AnimatedText delay={1.2}>
-            <Icons.chevronDown className="h-6 w-6 mt-10" />
+            <ScrollDownButton />
           </AnimatedText>
         </div>
       </section>
       {/* Timeline Section */}
-      <AnimatedSection className="container space-y-6 py-10 my-14" id="timeline">
+      <AnimatedSection className="container space-y-6 py-10 my-14" id="Career">
         <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
           <AnimatedText
             as="h2"

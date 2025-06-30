@@ -14,8 +14,8 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
           <a href="#about" className="text-sm font-medium hover:underline">
             About Me
           </a>
-          <a href="#timeline" className="text-sm font-medium hover:underline">
-            Timeline
+          <a href="#Career" className="text-sm font-medium hover:underline">
+            Career
           </a>
           <a href="#skills" className="text-sm font-medium hover:underline">
             Skills
