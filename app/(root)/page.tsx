@@ -18,7 +18,7 @@ import { ContactForm } from "@/components/forms/contact-form";
 import { ScrollDownButton } from "@/components/common/scroll-down-button";
 
 export const metadata: Metadata = {
-  title: `Agnik Banerjee | ${pagesConfig.home.metadata.title}`,
+  title: `${pagesConfig.home.metadata.title}`,
   description: `${pagesConfig.home.metadata.description} Agnik Banerjee's Portfolio.`,
   alternates: {
     canonical: siteConfig.url,
