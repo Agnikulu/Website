@@ -10,7 +10,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   return (
     <footer className={cn(className)}>
       <div className="container flex flex-col items-center justify-center gap-8 mt-10 py-10 md:h-24">
-        <nav className="flex gap-6 mb-4">
+        <nav className="flex flex-wrap justify-center gap-6 mb-4">
           <a href="#about" className="text-sm font-medium hover:underline">
             About Me
           </a>
@@ -35,7 +35,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
                     variant: "ghost",
                     size: "sm",
                   }),
-                  "h-10 w-10 p-2"
+                  "h-10 w-10 p-2 flex items-center justify-center"
                 )}
               >
                 <item.icon className="h-5 w-5" />
