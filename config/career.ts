@@ -25,7 +25,7 @@ export const careerExperiences: CareerExperienceInterface[] = [
     description: [
       "Developed a RAG-enhanced text-to-SQL agent using Claude-MCP, Pinecone vector DB, and PostgreSQL via FastAPI to eliminate idle Azure resources for Mashreq Bank (UAE).",
       "Implemented real‑time voice assistant for financial Q\&A via VAPI by streaming user speech into the MCP server",
-      "Containerized and deployed the agent Designed and deployed end‑to‑end HTTPS/SSE architecture with load balancing, connection pooling, auto‑scaling, OAuth 2.1, and RBAC.",
+      "Containerized and deployed the agent using end‑to‑end HTTPS/SSE architecture with load balancing, connection pooling, auto‑scaling, OAuth 2.1, and RBAC.",
     ],
     achievements: [
       "Trimmed annual cloud spend by >$630,000 over a $6.9 million footprint from over 13,000 VMs and 7,500 storage buckets.",
