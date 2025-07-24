@@ -24,8 +24,8 @@ export const careerExperiences: CareerExperienceInterface[] = [
     endDate: "Present",
     description: [
       "Developed a RAG-enhanced text-to-SQL agent using Claude-MCP, Pinecone vector DB, and PostgreSQL via FastAPI to eliminate idle Azure resources for Mashreq Bank (UAE).",
-      "Implemented real‑time voice assistant for financial Q\&A via VAPI by streaming user speech into the MCP server",
-      "Containerized and deployed the agent using end‑to‑end HTTPS/SSE architecture with load balancing, connection pooling, auto‑scaling, OAuth 2.1, and RBAC.",
+      "Containerized and deployed agent and custom MCP server using end‑to‑end HTTPS/SSE architecture with load balancing, connection pooling, auto‑scaling, OAuth 2.1, and RBAC.",
+      "Implemented real‑time voice assistant for financial Q\&A via VAPI by streaming user speech into MCP server.",
     ],
     achievements: [
       "Trimmed annual cloud spend by >$630,000 over a $6.9 million footprint from over 13,000 VMs and 7,500 storage buckets.",
@@ -69,7 +69,7 @@ export const careerExperiences: CareerExperienceInterface[] = [
     startDate: new Date("2021-06-01"),
     endDate: new Date("2023-05-01"),
     description: [
-      "Developed a facial expression classifier with 14× fewer parameters and only 1.12% lower accuracy than state-of-the-art models",
+      "Developed a facial expression classifier with 14× fewer parameters and only 1.12% lower accuracy than state-of-the-art models.",
       "Led federated learning research by coordinating a team to create iOS and Android federated learning ecosystems.",
     ],
     achievements: [
