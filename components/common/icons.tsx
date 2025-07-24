@@ -40,7 +40,7 @@ import {
   HiOutlineExternalLink,
   HiOutlineLink,
 } from "react-icons/hi";
-import { IoIosGitBranch } from "react-icons/io";
+import { IoIosGitBranch, IoIosPaper } from "react-icons/io";
 import {
   SiAmazonaws,
   SiAngular,
@@ -179,4 +179,5 @@ export const Icons = {
   python: SiPython,
   java: DiJava,
   pytorch: SiPytorch,
+  resume: IoIosPaper,
 };

@@ -80,9 +80,15 @@ export default function IndexPage() {
               <a
                 href={siteConfig.links.github}
                 target="_blank"
-                className={cn(buttonVariants({ size: "lg" }))}
-                aria-label="View Agnik Banerjee's GitHub profile"
                 rel="noopener noreferrer"
+                className={cn(
+                  buttonVariants({
+                    variant: "outline",
+                    size: "lg",
+                  }),
+                  "border-2 rounded-xl shadow text-primary hover:bg-primary/10 transition-colors"
+                )}
+                aria-label="View Agnik Banerjee's GitHub profile"
               >
                 <Icons.gitHub className="w-4 h-4 mr-2" /> GitHub
               </a>
@@ -94,11 +100,29 @@ export default function IndexPage() {
                   buttonVariants({
                     variant: "outline",
                     size: "lg",
-                  })
+                  }),
+                  "border-2 rounded-xl shadow text-primary hover:bg-primary/10 transition-colors"
                 )}
                 aria-label="Contact Agnik Banerjee"
               >
                 <Icons.contact className="w-4 h-4 mr-2" /> Contact
+              </a>
+            </AnimatedText>
+            <AnimatedText delay={1.0}>
+              <a
+                href="https://drive.google.com/file/d/1WkRgeQIg08kjkL9lIBZxS4RqguhMS9X6/view?usp=drive_link"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  buttonVariants({
+                    variant: "outline",
+                    size: "lg",
+                  }),
+                  "border-2 rounded-xl shadow text-primary hover:bg-primary/10 transition-colors"
+                )}
+                aria-label="View Resume"
+              >
+                <Icons.resume className="w-4 h-4 mr-2" /> Resume
               </a>
             </AnimatedText>
           </div>
