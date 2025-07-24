@@ -51,7 +51,7 @@ export const careerExperiences: CareerExperienceInterface[] = [
     endDate: "Present",
     description: [
       "Built self-supervised foundation models from scratch using PyTorch on thousands of hours of Fitbit data.",
-      "Trained classifiers using contrastive learning to diagnose drug usage and craving.",
+      "Trained classifiers using contrastive learning to diagnose lifestyle diseases and addictions.",
     ],
     achievements: [
       "Achieved less than 6 BPM and 300 steps average error per hour on large-scale Fitbit datasets.",
