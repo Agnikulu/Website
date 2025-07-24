@@ -24,7 +24,8 @@ export const careerExperiences: CareerExperienceInterface[] = [
     endDate: "Present",
     description: [
       "Developed a RAG-enhanced text-to-SQL agent using Claude-MCP, Pinecone vector DB, and PostgreSQL via FastAPI to eliminate idle Azure resources for Mashreq Bank (UAE).",
-      "Containerized and deployed the agent with HTTPS/SSE load-balancers, connection-pooling, auto-scaling, and Grafana-based audit logging.",
+      "Implemented real‑time voice assistant for financial Q\&A via VAPI by streaming user speech into the MCP server",
+      "Containerized and deployed the agent Designed and deployed end‑to‑end HTTPS/SSE architecture with load balancing, connection pooling, auto‑scaling, OAuth 2.1, and RBAC.",
     ],
     achievements: [
       "Trimmed annual cloud spend by >$630,000 over a $6.9 million footprint from over 13,000 VMs and 7,500 storage buckets.",
@@ -54,7 +55,7 @@ export const careerExperiences: CareerExperienceInterface[] = [
     ],
     achievements: [
       "Achieved less than 6 BPM and 300 steps average error per hour on large-scale Fitbit datasets.",
-      ">70% sensitivity in drug usage and craving diagnosis using contrastive learning.",
+      "Achieved >70% sensitivity in hypertension and drug usage & craving diagnosis.",
     ],
     skills: ["Python", "PyTorch", "TensorFlow"],
     companyUrl: "https://techlab.ucsf.edu",
@@ -68,12 +69,12 @@ export const careerExperiences: CareerExperienceInterface[] = [
     startDate: new Date("2021-06-01"),
     endDate: new Date("2023-05-01"),
     description: [
-      "Developed a facial expression classifier with 14× fewer parameters and only 1.12% lower accuracy than state-of-the-art models; deployed on the lab’s 'GuessWhat?' app for real-time autism-spectrum disorder detection.",
+      "Developed a facial expression classifier with 14× fewer parameters and only 1.12% lower accuracy than state-of-the-art models",
       "Led federated learning research by coordinating a team to create iOS and Android federated learning ecosystems.",
     ],
     achievements: [
       "Deployed classifier on 'GuessWhat?' app (10K+ downloads) for real-time detection and treatment of autism-spectrum disorder in young children.",
-      "Created federated learning ecosystems for future lab initiatives by leading a team of app developers and PhD candidates.",
+      "Created federated learning ecosystem for future lab initiatives.",
     ],
     skills: ["Python", "TensorFlow", "Java"],
     companyUrl: "https://wall-lab.stanford.edu",
