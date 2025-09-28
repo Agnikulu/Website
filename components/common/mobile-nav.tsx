@@ -28,23 +28,23 @@ export function MobileNav({ items, children }: MobileNavProps) {
       )}
     >
       <div className="relative z-20 grid gap-6 rounded-md bg-popover p-4 text-popover-foreground shadow-md">
-        <Link href="#about" className="flex items-center space-x-2">
+        <Link href="/#about" className="flex items-center space-x-2">
           <span className={cn(norican.className, "text-2xl")}>
             {siteConfig.authorName}
           </span>
         </Link>
         <nav className="grid grid-flow-row auto-rows-max text-sm">
           <a className="flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline">
-            <Link href="#about">About Me</Link>
+            <Link href="/#about">About Me</Link>
           </a>
           <a className="flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline">
-            <Link href="#Career">Career</Link>
+            <Link href="/career">Career</Link>
           </a>
           <a className="flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline">
-            <Link href="#skills">Skills</Link>
+            <Link href="/skills">Skills</Link>
           </a>
           <a className="flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline">
-            <Link href="#contact">Contact</Link>
+            <Link href="/contact">Contact</Link>
           </a>
         </nav>
         {children}

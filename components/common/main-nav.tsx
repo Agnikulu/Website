@@ -52,37 +52,37 @@ export function MainNav({ items, children }: MainNavProps) {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <a href="#about" className="hidden items-center space-x-2 md:flex">
+        <Link href="/#about" className="hidden items-center space-x-2 md:flex">
           <span className={cn(norican.className, "text-2xl")}>
             {siteConfig.authorName}
           </span>
-        </a>
+        </Link>
       </motion.div>
       <nav className="hidden gap-6 md:flex items-center">
-        <a
-          href="#about"
+        <Link
+          href="/#about"
           className="flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm text-foreground"
         >
           About Me
-        </a>
-        <a
-          href="#Career"
+        </Link>
+        <Link
+          href="/career"
           className="flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm text-foreground/60"
         >
           Career
-        </a>
-        <a
-          href="#skills"
+        </Link>
+        <Link
+          href="/skills"
           className="flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm text-foreground/60"
         >
           Skills
-        </a>
-        <a
-          href="#contact"
+        </Link>
+        <Link
+          href="/contact"
           className="flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm text-foreground/60"
         >
           Contact
-        </a>
+        </Link>
       </nav>
       <motion.button
         className="flex items-center space-x-2 md:hidden"
