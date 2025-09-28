@@ -155,17 +155,20 @@ export default function CareerDetailPage({ params }: CareerDetailPageProps) {
             {activeTab === "summary" && (
               <div>
                 <ul className="list-disc pl-4 sm:pl-5 md:pl-6 space-y-1 sm:space-y-2 md:space-y-3">
-                  {career.description.map((desc, idx) => (
-                    <motion.li
-                      key={idx}
-                      className="text-xs sm:text-sm md:text-base"
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: idx * 0.1 }}
-                    >
-                      {desc}
-                    </motion.li>
-                  ))}
+                  {career.description.map((desc, idx) => {
+                    const text = desc.replace(/^[•\-\*\s]+/, "").trim();
+                    return (
+                      <motion.li
+                        key={idx}
+                        className="text-xs sm:text-sm md:text-base"
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: idx * 0.1 }}
+                      >
+                        {text}
+                      </motion.li>
+                    );
+                  })}
                 </ul>
               </div>
             )}
