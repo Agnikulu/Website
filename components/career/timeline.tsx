@@ -137,26 +137,44 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
                     <h4 className="font-medium mb-1 sm:mb-2 text-xs sm:text-sm">
                       Summary
                     </h4>
-                    <ul className="list-disc pl-4 sm:pl-5 space-y-1">
-                      {experience.description.map((desc, idx) => (
-                        <li key={idx} className="text-xs sm:text-sm">
-                          {desc}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
 
-                  <div className="mb-3 sm:mb-4">
-                    <h4 className="font-medium mb-1 sm:mb-2 text-xs sm:text-sm">
-                      Key Achievements
-                    </h4>
-                    <ul className="list-disc pl-4 sm:pl-5 space-y-1">
-                      {experience.achievements.map((achievement, idx) => (
-                        <li key={idx} className="text-xs sm:text-sm">
-                          {achievement}
-                        </li>
-                      ))}
-                    </ul>
+                    {/* Render description lines from config/career.ts:
+                        - Non-bullet lines (headers) shown as paragraphs
+                        - Bullet lines (starting with "•") grouped into a list
+                        This ensures bullets from the resume appear properly and
+                        avoids the old duplicated "Key Achievements" section. */}
+                    {experience.description && experience.description.length > 0 && (
+                      <div className="mt-1">
+                        {(() => {
+                          const nonBullets = experience.description.filter(
+                            (line) => !line.trim().startsWith("•")
+                          );
+                          const bullets = experience.description.filter((line) =>
+                            line.trim().startsWith("•")
+                          );
+
+                          return (
+                            <>
+                              {nonBullets.map((line, idx) => (
+                                <p key={`nb-${idx}`} className="text-xs sm:text-sm mb-1">
+                                  {line}
+                                </p>
+                              ))}
+
+                              {bullets.length > 0 && (
+                                <ul className="list-disc pl-4 sm:pl-5 space-y-1 mt-1">
+                                  {bullets.map((line, idx) => (
+                                    <li key={`b-${idx}`} className="text-xs sm:text-sm">
+                                      {line.replace(/^•\s*/, "")}
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </>
+                          );
+                        })()}
+                      </div>
+                    )}
                   </div>
 
                   <div className="mb-3 sm:mb-4">

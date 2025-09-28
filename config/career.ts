@@ -7,9 +7,9 @@ export interface CareerExperienceInterface {
   location: string;
   startDate: Date;
   endDate: Date | "Present";
-  description: string[];
-  achievements: string[];
-  skills: ValidSkills[];
+  description: string[]; // summary copied exactly from resume (including bullets/header lines)
+  // allow known ValidSkills or arbitrary strings (e.g. "Agile", "Android Studio", "scikit-learn")
+  skills: (ValidSkills | string)[];
   companyUrl?: string;
   logo?: string;
 }
@@ -17,15 +17,16 @@ export interface CareerExperienceInterface {
 export const careerExperiences: CareerExperienceInterface[] = [
   {
     id: "booz-allen",
-    position: "Machine Learning Engineer",
+    position: "Software Engineering Intern",
     company: "Booz Allen Hamilton",
-    location: "McLean, VA",
+    location: "Bethesda, MD",
     startDate: new Date("2025-09-01"),
     endDate: "Present",
-    description: [],
-    achievements: [],
-    skills: [],
-    companyUrl: "",
+    description: [
+      "• Working in an Agile team to build a policy citation tool aiding Medicaid and CHIP auditors in application review",
+    ],
+    skills: ["Agile", "RESTful APIs", "Python"],
+    companyUrl: "https://www.boozallen.com",
     logo: "/career/booz.png",
   },
   {
@@ -36,21 +37,18 @@ export const careerExperiences: CareerExperienceInterface[] = [
     startDate: new Date("2025-05-01"),
     endDate: new Date("2025-09-30"),
     description: [
-      "Developed a RAG-enhanced text-to-SQL agent using Claude-MCP, Pinecone vector DB, and PostgreSQL via FastAPI to eliminate idle Azure resources for Mashreq Bank (UAE).",
-      "Designed and deployed custom MCP server with load balancing, connection pooling, auto-scaling, OAuth 2.1, and RBAC.",
-      "Implemented real‑time voice assistant for financial Q&A via VAPI by streaming user speech into MCP server.",
-    ],
-    achievements: [
-      "Trimmed annual cloud spend by >$630,000 over a $6.9 million footprint from over 13,000 VMs and 7,500 storage buckets.",
-      "Delivered 99.9% uptime and sub-300 ms median query latency for 10+ concurrent enterprise users.",
+      "• Developed a RAG-enhanced text-to-SQL agent using Claude-MCP, Pinecone vector DB, and FastAPI to answer financial questions from relational PostgreSQL databases and eliminate idle resources with Azure Resource Graph, saving $0.63 million over a $6.9 million footprint of over 13K VMs and 7.5K storage containers",
+      "• Designed, containerized, and deployed custom MCP server using Docker and Kubernetes and set up Jenkins CI/CD for rolling releases, achieving 99.9% uptime with sub-300ms median latency for 10+ concurrent enterprise users",
     ],
     skills: [
       "Python",
       "FastAPI",
-      "Azure",
       "PostgreSQL",
+      "Azure",
       "Docker",
       "Kubernetes",
+      "Jenkins",
+      "CI/CD",
     ],
     companyUrl: "https://aquilaclouds.com",
     logo: "/career/aquila.png",
@@ -63,14 +61,10 @@ export const careerExperiences: CareerExperienceInterface[] = [
     startDate: new Date("2024-06-01"),
     endDate: "Present",
     description: [
-      "Built self-supervised foundation models from scratch using PyTorch on thousands of hours of Fitbit data.",
-      "Trained classifiers using contrastive learning to diagnose lifestyle diseases and addictions.",
+      "• Built personalized XGBoost models to predict BP spikes and high stress from Fitbit + EMA, achieving 0.80 AUROC (BP) and 0.85 AUROC (stress); paper accepted to NPJ Biosensing and currently in publication",
+      "• Developed personalized self-supervised SimCLR models in PyTorch on minute-level Fitbit HR/steps to forecast drug use/craving with 0.685 AUROC; paper accepted to NPJ Digital Medicine and currently in publication",
     ],
-    achievements: [
-      "Achieved less than 6 BPM and 300 steps average error per hour on large-scale Fitbit datasets.",
-      "Achieved >70% sensitivity in hypertension and drug usage & craving diagnosis.",
-    ],
-    skills: ["Python", "PyTorch", "TensorFlow"],
+    skills: ["Python", "PyTorch", "TensorFlow", "scikit-learn"],
     companyUrl: "https://techlab.ucsf.edu",
     logo: "/career/ucsf.png",
   },
@@ -82,14 +76,9 @@ export const careerExperiences: CareerExperienceInterface[] = [
     startDate: new Date("2021-06-01"),
     endDate: new Date("2023-05-01"),
     description: [
-      "Developed a facial expression classifier with 14× fewer parameters and only 1.12% lower accuracy than state-of-the-art models.",
-      "Led federated learning research by coordinating a team to create iOS and Android federated learning ecosystems.",
+      "• Developed a facial expression classifier with 14× fewer parameters and only 1.12% lower accuracy than state-of-the-art models; deployed it on the lab’s Android version of the ”GuessWhat?” app (10K+ downloads) using TensorFlow Lite for real-time detection and treatment of autism-spectrum disorder in young children",
     ],
-    achievements: [
-      "Deployed classifier on 'GuessWhat?' app (10K+ downloads) for real-time detection and treatment of autism-spectrum disorder in young children.",
-      "Created federated learning ecosystem for future lab initiatives.",
-    ],
-    skills: ["Python", "TensorFlow", "Java"],
+    skills: ["TensorFlow", "Android Studio", "Python", "Java"],
     companyUrl: "https://wall-lab.stanford.edu",
     logo: "/career/stanford.png",
   },
