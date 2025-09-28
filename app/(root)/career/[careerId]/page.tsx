@@ -186,7 +186,7 @@ export default function CareerDetailPage({ params }: CareerDetailPageProps) {
             {activeTab === "achievements" && (
               <div>
                 <ul className="list-disc pl-4 sm:pl-5 md:pl-6 space-y-1 sm:space-y-2 md:space-y-3">
-                  {career.achievements.map((achievement, idx) => (
+                  {( (career as any).achievements ?? [] ).map((achievement: string, idx: number) => (
                     <motion.li
                       key={idx}
                       className="text-xs sm:text-sm md:text-base"
