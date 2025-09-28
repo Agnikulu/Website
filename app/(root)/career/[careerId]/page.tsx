@@ -25,9 +25,7 @@ const getYearFromDate = (date: Date): string => {
 
 export default function CareerDetailPage({ params }: CareerDetailPageProps) {
   const career = careerExperiences.find((c) => c.id === params.careerId);
-  const [activeTab, setActiveTab] = useState<
-    "summary" | "achievements" | "skills"
-  >("summary");
+  const [activeTab, setActiveTab] = useState<"summary" | "skills">("summary");
 
   if (!career) {
     redirect("/career");
@@ -132,18 +130,7 @@ export default function CareerDetailPage({ params }: CareerDetailPageProps) {
                 />
               )}
             </button>
-            <button
-              className={`py-1 sm:py-2 px-2 sm:px-4 font-medium text-xs sm:text-sm relative whitespace-nowrap ${activeTab === "achievements" ? "text-primary" : "text-muted-foreground"}`}
-              onClick={() => setActiveTab("achievements")}
-            >
-              Achievements
-              {activeTab === "achievements" && (
-                <motion.div
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-                  layoutId="activeTabIndicator"
-                />
-              )}
-            </button>
+            {/* Achievements tab removed */}
             <button
               className={`py-1 sm:py-2 px-2 sm:px-4 font-medium text-xs sm:text-sm relative whitespace-nowrap ${activeTab === "skills" ? "text-primary" : "text-muted-foreground"}`}
               onClick={() => setActiveTab("skills")}
@@ -177,24 +164,6 @@ export default function CareerDetailPage({ params }: CareerDetailPageProps) {
                       transition={{ duration: 0.3, delay: idx * 0.1 }}
                     >
                       {desc}
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {activeTab === "achievements" && (
-              <div>
-                <ul className="list-disc pl-4 sm:pl-5 md:pl-6 space-y-1 sm:space-y-2 md:space-y-3">
-                  {( (career as any).achievements ?? [] ).map((achievement: string, idx: number) => (
-                    <motion.li
-                      key={idx}
-                      className="text-xs sm:text-sm md:text-base"
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: idx * 0.1 }}
-                    >
-                      {achievement}
                     </motion.li>
                   ))}
                 </ul>
