@@ -16,16 +16,29 @@ export interface CareerExperienceInterface {
 
 export const careerExperiences: CareerExperienceInterface[] = [
   {
+    id: "booz-allen",
+    position: "Machine Learning Engineer",
+    company: "Booz Allen Hamilton",
+    location: "McLean, VA",
+    startDate: new Date("2025-09-01"),
+    endDate: "Present",
+    description: [],
+    achievements: [],
+    skills: [],
+    companyUrl: "",
+    logo: "/career/booz.png",
+  },
+  {
     id: "aquila-clouds",
     position: "Software Engineering Intern",
     company: "Aquila Clouds",
     location: "Pleasanton, CA",
     startDate: new Date("2025-05-01"),
-    endDate: "Present",
+    endDate: new Date("2025-09-30"),
     description: [
       "Developed a RAG-enhanced text-to-SQL agent using Claude-MCP, Pinecone vector DB, and PostgreSQL via FastAPI to eliminate idle Azure resources for Mashreq Bank (UAE).",
       "Designed and deployed custom MCP server with load balancing, connection pooling, auto-scaling, OAuth 2.1, and RBAC.",
-      "Implemented real‑time voice assistant for financial Q\&A via VAPI by streaming user speech into MCP server.",
+      "Implemented real‑time voice assistant for financial Q&A via VAPI by streaming user speech into MCP server.",
     ],
     achievements: [
       "Trimmed annual cloud spend by >$630,000 over a $6.9 million footprint from over 13,000 VMs and 7,500 storage buckets.",

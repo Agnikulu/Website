@@ -148,7 +148,13 @@ export default function IndexPage() {
             {pagesConfig.career.description}
           </AnimatedText>
         </div>
-        <Timeline experiences={careerExperiences} />
+        <Timeline
+          experiences={[...careerExperiences].sort((a, b) => {
+            const aTime = a.startDate instanceof Date ? a.startDate.getTime() : 0;
+            const bTime = b.startDate instanceof Date ? b.startDate.getTime() : 0;
+            return bTime - aTime; // newest first
+          })}
+        />
       </AnimatedSection>
       {/* Skills Section */}
       <AnimatedSection className="container space-y-6 bg-muted py-10" id="skills">

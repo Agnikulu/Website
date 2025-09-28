@@ -191,19 +191,15 @@ interface TimelineProps {
 const Timeline: React.FC<TimelineProps> = ({ experiences }) => {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
-  // Sort experiences by date (most recent first)
-  const sortedExperiences = [...experiences].sort((a, b) => {
-    const dateA = a.endDate === "Present" ? new Date() : a.endDate;
-    const dateB = b.endDate === "Present" ? new Date() : b.endDate;
-    return dateB.getTime() - dateA.getTime();
-  });
+  // Use the order provided by the caller (do not re-sort here)
+  const items = experiences;
 
-  // Auto-expand the first item on initial load
+  // Auto-expand the first item on initial load (respecting caller order)
   useEffect(() => {
-    if (sortedExperiences.length > 0 && expandedId === null) {
-      setExpandedId(sortedExperiences[0].id);
+    if (items.length > 0 && expandedId === null) {
+      setExpandedId(items[0].id);
     }
-  }, [sortedExperiences, expandedId]);
+  }, [items, expandedId]);
 
   const toggleExpand = (id: string) => {
     setExpandedId(expandedId === id ? null : id);
@@ -211,11 +207,11 @@ const Timeline: React.FC<TimelineProps> = ({ experiences }) => {
 
   return (
     <div className="container max-w-5xl mx-auto py-4 sm:py-8 px-2 sm:px-4">
-      {sortedExperiences.map((experience, index) => (
+      {items.map((experience, index) => (
         <TimelineItem
           key={experience.id}
           experience={experience}
-          isLast={index === sortedExperiences.length - 1}
+          isLast={index === items.length - 1}
           expandedId={expandedId}
           toggleExpand={toggleExpand}
         />
