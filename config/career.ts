@@ -23,9 +23,10 @@ export const careerExperiences: CareerExperienceInterface[] = [
     startDate: new Date("2025-09-01"),
     endDate: "Present",
     description: [
-      "• Working in an Agile team to build a policy citation tool aiding Medicaid and CHIP auditors in application review",
+      "• Built an end-to-end RAG pipeline that extracted, embedded, and chunked 200+ Medicaid/CHIP policy PDFs using LangChain & Qdrant; exposed REST APIs to serve 50+ auditors with cited, section-linked answers",
+      "• Engineered hybrid retrieval (vector + keyword search) with version-aware filtering and reranking logic, achieving 92% accuracy; integrated DynamoDB persistence and guardrail fallbacks to ensure 99% answer traceability"
     ],
-    skills: ["Agile", "RESTful APIs", "Python"],
+    skills: ["Agile", "RESTful APIs", "Python", "LangChain", "Qdrant", "DynamoDB"],
     companyUrl: "https://www.boozallen.com",
     logo: "/career/booz.png",
   },
@@ -61,8 +62,7 @@ export const careerExperiences: CareerExperienceInterface[] = [
     startDate: new Date("2024-06-01"),
     endDate: "Present",
     description: [
-      "• Built personalized XGBoost models to predict BP spikes and high stress from Fitbit + EMA, achieving 0.80 AUROC (BP) and 0.85 AUROC (stress); paper accepted to NPJ Biosensing and currently in publication",
-      "• Developed personalized self-supervised SimCLR models in PyTorch on minute-level Fitbit HR/steps to forecast drug use/craving with 0.685 AUROC; paper accepted to NPJ Digital Medicine and currently in publication",
+      "Built personalized XGBoost & SimCLR models in PyTorch to predict high stress (0.85 AUROC) and drug usage/craving (0.68 AUROC) from minute-level Fitbit data; two papers are in publication at NPJ Digital Medicine",
     ],
     skills: ["Python", "PyTorch", "TensorFlow", "scikit-learn"],
     companyUrl: "https://techlab.ucsf.edu",
