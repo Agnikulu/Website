@@ -110,7 +110,7 @@ export default function IndexPage() {
             </AnimatedText>
             <AnimatedText delay={1.0}>
               <a
-                href="https://drive.google.com/file/d/1GunnQhjRfH2gN2JMXc_pJHwA39VytM9b/view?usp=sharing"
+                href="https://drive.google.com/file/d/1wPBTyFfIajs-Frrz1Y6f6-qhB6ko8aJd/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
