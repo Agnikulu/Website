@@ -19,7 +19,7 @@ export const careerExperiences: CareerExperienceInterface[] = [
     position: "Software Engineer",
     company: "Amazon",
     location: "Arlington, VA",
-    startDate: new Date("2026-01-01"),
+    startDate: new Date("2026-01-05"),
     endDate: "Present",
     description: [
       "• Reduced sustainability research time by 70% with an automated ingestion pipeline using BeautifulSoup, Selenium, and AWS Step Functions, scraping 3K+ monthly documents across government, academic, and industry sources",
