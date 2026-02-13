@@ -7,9 +7,11 @@ import { ClientPageWrapper } from "@/components/common/client-page-wrapper";
 import { Icons } from "@/components/common/icons";
 import Timeline from "@/components/career/timeline";
 import SkillsCard from "@/components/skills/skills-card";
+import ProjectsCard from "@/components/projects/projects-card";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { featuredSkills } from "@/config/skills";
 import { careerExperiences } from "@/config/career";
+import { featuredProjects } from "@/config/projects";
 import { pagesConfig } from "@/config/pages";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -33,7 +35,7 @@ export default function IndexPage() {
     name: siteConfig.authorName,
     url: siteConfig.url,
     image: siteConfig.ogImage,
-    jobTitle: "Full Stack Developer",
+    jobTitle: "Software Engineer",
     sameAs: [siteConfig.links.github, siteConfig.links.twitter],
   };
 
@@ -72,7 +74,7 @@ export default function IndexPage() {
           </AnimatedText>
           <div className="mt-4 max-w-[42rem] text-center">
             <p className="leading-normal text-muted-foreground text-sm sm:text-base">
-              Student at the University of Maryland studying Computer Science with minors in Data Science and Technology Entrepreneurship & Corporate Innovation. Passionate about building software and technology solutions, exploring AI’s potential in healthcare, and driving innovation in early-stage startups.
+              Student at the University of Maryland studying Computer Science minoring in Technology Entrepreneurship &amp; Corporate Innovation. Passionate about building software and technology solutions, exploring AI&apos;s potential in healthcare, and driving innovation in early-stage startups.
             </p>
           </div>
           <div className="flex flex-col mt-10 items-center justify-center sm:flex-row sm:space-x-4 gap-3">
@@ -110,7 +112,7 @@ export default function IndexPage() {
             </AnimatedText>
             <AnimatedText delay={1.0}>
               <a
-                href="https://drive.google.com/file/d/1wPBTyFfIajs-Frrz1Y6f6-qhB6ko8aJd/view?usp=sharing"
+                href="https://linkedin.com/in/agnikbanerjee"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
@@ -120,9 +122,9 @@ export default function IndexPage() {
                   }),
                   "border-2 rounded-xl shadow text-primary hover:bg-primary/10 transition-colors"
                 )}
-                aria-label="View Resume"
+                aria-label="View Agnik Banerjee's LinkedIn profile"
               >
-                <Icons.resume className="w-4 h-4 mr-2" /> Resume
+                <Icons.linkedin className="w-4 h-4 mr-2" /> LinkedIn
               </a>
             </AnimatedText>
           </div>
@@ -155,6 +157,25 @@ export default function IndexPage() {
             return bTime - aTime; // newest first
           })}
         />
+      </AnimatedSection>
+      {/* Projects Section */}
+      <AnimatedSection className="container space-y-6 py-10 my-14" id="projects">
+        <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
+          <AnimatedText
+            as="h2"
+            className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl"
+          >
+            {pagesConfig.projects.title}
+          </AnimatedText>
+          <AnimatedText
+            as="p"
+            delay={0.2}
+            className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
+          >
+            {pagesConfig.projects.description}
+          </AnimatedText>
+        </div>
+        <ProjectsCard projects={featuredProjects} />
       </AnimatedSection>
       {/* Skills Section */}
       <AnimatedSection className="container space-y-6 bg-muted py-10" id="skills">

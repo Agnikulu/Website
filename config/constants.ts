@@ -52,7 +52,15 @@ export type ValidSkills =
   | "PyTorch"
   | "Spring Boot"
   | "Laravel"
-  | "PHP";
+  | "PHP"
+  | "Go"
+  | "SQL"
+  | "C/C++"
+  | "Flask"
+  | "Kafka"
+  | "Elasticsearch"
+  | "LangChain"
+  | "scikit-learn";
 
 export type ValidCategory =
   | "Full Stack"
@@ -61,7 +69,10 @@ export type ValidCategory =
   | "UI/UX"
   | "Web Dev"
   | "Mobile Dev"
-  | "3D Modeling";
+  | "3D Modeling"
+  | "AI/ML"
+  | "Data Engineering"
+  | "Systems";
 
 export type ValidExpType = "Personal Project" | "Professional";
 
@@ -72,4 +83,5 @@ export type ValidPages =
   | "career"
   | "contact"
   | "contributions"
-  | "resume";
+  | "resume"
+  | "projects";

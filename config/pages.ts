@@ -71,4 +71,12 @@ export const pagesConfig: PagesConfig = {
       description: "Agnik Banerjee's professional journey and career timeline.",
     },
   },
+  projects: {
+    title: "Projects",
+    description: "Personal and research projects I've built.",
+    metadata: {
+      title: "Projects",
+      description: "Agnik Banerjee's personal and research projects.",
+    },
+  },
 };

@@ -108,7 +108,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
               <div className="flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-2">
                 <div className="inline-flex items-center justify-center bg-background border border-primary px-2 py-0.5 rounded-full text-xs font-medium text-primary shadow-sm">
                   {typeof experience.endDate === "string"
-                    ? getYearFromDate(experience.startDate) + " - Now"
+                    ? getYearFromDate(experience.startDate) + " - Present"
                     : getYearFromDate(experience.startDate) +
                       " - " +
                       getYearFromDate(experience.endDate)}

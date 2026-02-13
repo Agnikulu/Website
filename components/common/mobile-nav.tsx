@@ -41,6 +41,9 @@ export function MobileNav({ items, children }: MobileNavProps) {
             <Link href="/career">Career</Link>
           </a>
           <a className="flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline">
+            <Link href="/projects">Projects</Link>
+          </a>
+          <a className="flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline">
             <Link href="/skills">Skills</Link>
           </a>
           <a className="flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline">
