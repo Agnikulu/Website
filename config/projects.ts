@@ -40,7 +40,7 @@ export const projects: ProjectInterface[] = [
     name: "GuessWhat?",
     category: ["AI/ML", "Mobile Dev"],
     shortDescription:
-      "A Stanford University research game for families with children ages 3-12. Uses ML and AI to analyze children's behavioral expressions from home video to aid autism research.",
+      "A Stanford University research game for families with children ages 3-12. Uses AI to analyze children's behavioral expressions from home video to aid autism research.",
     websiteLink: "https://formative.jmir.org/2023/1/e39917",
     techStack: ["TensorFlow", "Java", "Android"],
     descriptionBullets: [
