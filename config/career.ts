@@ -82,4 +82,21 @@ export const careerExperiences: CareerExperienceInterface[] = [
     companyUrl: "https://techlab.ucsf.edu",
     logo: "/career/ucsf.png",
   },
+  {
+    id: "stanford-wall-lab",
+    position: "AI Research Intern",
+    company: "The Wall Lab, Stanford Medicine",
+    location: "Stanford, CA",
+    startDate: new Date("2021-06-01"),
+    endDate: new Date("2023-05-01"),
+    description: [
+      "• Designed a facial expression classifier with 14× fewer parameters and only 1.12% lower accuracy than state-of-the-art models",
+      "• Deployed the classifier on the lab's Android 'GuessWhat?' app (10K+ downloads) using TensorFlow Lite and Java for real-time autism-spectrum disorder screening",
+      "• Achieved sub-100ms classification on consumer devices by applying TensorFlow Lite quantization and pruning",
+      "• Collaborated with Stanford's Wall Lab researchers to integrate on-device ML inference into clinical therapy sessions",
+    ],
+    skills: ["TensorFlow", "TensorFlow Lite", "Python", "Java", "Android"],
+    companyUrl: "https://med.stanford.edu/wall-lab.html",
+    logo: "/career/stanford.png",
+  },
 ];

@@ -101,6 +101,59 @@ export const Experiences: ExperienceInterface[] = [
     },
   },
   {
+    id: "stanford-wall-lab",
+    companyName: "The Wall Lab, Stanford Medicine",
+    type: "Professional",
+    category: ["AI/ML", "Research", "Mobile Dev"],
+    shortDescription:
+      "Designed a facial expression classifier with 14× fewer parameters for autism treatment; deployed on GuessWhat? Android app with 10K+ downloads using TensorFlow Lite.",
+    websiteLink: "https://med.stanford.edu/wall-lab.html",
+    techStack: [
+      "TensorFlow",
+      "TensorFlow Lite",
+      "Python",
+      "Java",
+      "Android",
+    ],
+    startDate: new Date("2021-06-01"),
+    endDate: new Date("2023-05-01"),
+    companyLogoImg: "/experience/stanford/logo.png",
+    pagesInfoArr: [
+      {
+        title: "Facial Expression Classifier",
+        description:
+          "Lightweight model with 14× fewer parameters and minimal accuracy loss",
+        imgArr: ["/experience/stanford/logo.png"],
+      },
+      {
+        title: "GuessWhat? Android App",
+        description:
+          "Real-time emotion detection for autism spectrum disorder treatment",
+        imgArr: ["/experience/stanford/logo.png"],
+      },
+      {
+        title: "TensorFlow Lite Deployment",
+        description:
+          "Mobile-optimized model deployment reaching 10K+ users",
+        imgArr: ["/experience/stanford/logo.png"],
+      },
+    ],
+    descriptionDetails: {
+      paragraphs: [
+        "As an AI Research Intern at Stanford University School of Medicine's Wall Lab, I focused on developing efficient machine learning solutions for autism spectrum disorder (ASD) treatment. The primary challenge was creating a facial expression classifier that could run in real-time on mobile devices while maintaining high accuracy.",
+        "I designed an innovative facial expression classifier with 14× fewer parameters than state-of-the-art models, achieving only 1.12% lower accuracy. This dramatic reduction in model size made it possible to deploy the classifier on mobile devices without sacrificing performance, a critical requirement for the application.",
+        "The classifier was deployed on the lab's Android version of the 'GuessWhat?' app using TensorFlow Lite and Java, enabling real-time emotion detection. With over 10,000 downloads, the app has helped numerous children with autism spectrum disorder improve their ability to recognize and understand facial expressions, contributing to their social development and quality of life.",
+      ],
+      bullets: [
+        "Designed a facial expression classifier with 14× fewer parameters and only 1.12% lower accuracy than state-of-the-art models.",
+        "Deployed the classifier on the lab's Android 'GuessWhat?' app (10K+ downloads) using TensorFlow Lite and Java.",
+        "Enabled real-time emotion detection for autism-spectrum disorder screening in young children.",
+        "Applied TensorFlow Lite quantization and pruning to achieve sub-100ms classification on consumer mobile devices.",
+        "Collaborated with Stanford's Wall Lab researchers to integrate on-device ML inference into clinical therapy sessions.",
+      ],
+    },
+  },
+  {
     id: "the-super-quotes",
     companyName: "The Super Quotes",
     type: "Professional",

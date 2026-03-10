@@ -60,7 +60,9 @@ export type ValidSkills =
   | "Kafka"
   | "Elasticsearch"
   | "LangChain"
-  | "scikit-learn";
+  | "scikit-learn"
+  | "TensorFlow Lite"
+  | "Android";
 
 export type ValidCategory =
   | "Full Stack"
@@ -71,6 +73,7 @@ export type ValidCategory =
   | "Mobile Dev"
   | "3D Modeling"
   | "AI/ML"
+  | "Research"
   | "Data Engineering"
   | "Systems";
 
