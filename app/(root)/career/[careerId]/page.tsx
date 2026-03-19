@@ -92,25 +92,25 @@ export default function CareerDetailPage({ params }: CareerDetailPageProps) {
               </div>
             )}
             <div className="text-center sm:text-left">
-              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mb-1">
+              <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
                 <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
-                  {career.position}
+                  {career.companyUrl ? (
+                    <Link
+                      href={career.companyUrl}
+                      target="_blank"
+                      className="hover:text-primary transition-colors"
+                    >
+                      {career.company}
+                      <Icons.externalLink className="inline-block ml-2 w-4 h-4 sm:w-5 sm:h-5 align-baseline" />
+                    </Link>
+                  ) : (
+                    career.company
+                  )}
                 </h1>
               </div>
-              <div className="flex items-center justify-center sm:justify-start gap-2">
-                <h2 className="text-base sm:text-lg md:text-xl">
-                  {career.company}
-                </h2>
-                {career.companyUrl && (
-                  <Link
-                    href={career.companyUrl}
-                    target="_blank"
-                    className="text-muted-foreground hover:text-foreground"
-                  >
-                    <Icons.externalLink className="w-3 h-3 sm:w-4 sm:h-4" />
-                  </Link>
-                )}
-              </div>
+              <h2 className="text-base sm:text-lg md:text-xl text-muted-foreground">
+                {career.position}
+              </h2>
               <p className="text-sm text-muted-foreground">{career.location}</p>
             </div>
           </div>

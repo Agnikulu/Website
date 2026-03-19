@@ -83,24 +83,26 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
               <div>
-                <h3 className="text-lg sm:text-xl font-bold">
-                  {experience.position}
-                </h3>
-                <div className="flex items-center">
-                  <span className="text-muted-foreground text-sm sm:text-base">
-                    {experience.company}
-                  </span>
-                  {experience.companyUrl && (
-                    <Link
-                      href={experience.companyUrl}
-                      target="_blank"
-                      className="ml-2 text-muted-foreground hover:text-foreground"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <Icons.externalLink className="w-3 h-3" />
-                    </Link>
-                  )}
+                <div className="flex items-center gap-2">
+                  <h3 className="text-lg sm:text-xl font-bold">
+                    {experience.companyUrl ? (
+                      <Link
+                        href={experience.companyUrl}
+                        target="_blank"
+                        className="hover:text-primary transition-colors"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {experience.company}
+                        <Icons.externalLink className="inline-block ml-1.5 w-3.5 h-3.5 align-baseline" />
+                      </Link>
+                    ) : (
+                      experience.company
+                    )}
+                  </h3>
                 </div>
+                <p className="text-muted-foreground text-sm sm:text-base">
+                  {experience.position}
+                </p>
                 <div className="text-xs sm:text-sm text-muted-foreground">
                   {experience.location}
                 </div>
